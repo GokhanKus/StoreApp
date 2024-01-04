@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreAppUI", "StoreAppUI\StoreAppUI.csproj", "{A2764726-0217-4C7B-83D0-0B995CC1922F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2764726-0217-4C7B-83D0-0B995CC1922F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2764726-0217-4C7B-83D0-0B995CC1922F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2764726-0217-4C7B-83D0-0B995CC1922F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2764726-0217-4C7B-83D0-0B995CC1922F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8AEFECD2-8A21-48E6-B7ED-0784A8CAFFB1}
+	EndGlobalSection
+EndGlobal

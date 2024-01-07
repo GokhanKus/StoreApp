@@ -38,3 +38,7 @@ namespace StoreAppUI
 		}
 	}
 }
+/*
+Pipeline: iþ hattý demek (middlewareleri kapsar; yani program.csteki metotlarý)
+IOC þu 3 islemi yapar register, resolve ve dispose(elden cikarmak)
+*/

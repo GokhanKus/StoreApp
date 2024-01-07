@@ -1,3 +1,6 @@
+using StoreApp.DataAccess.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace StoreAppUI
 {
 	public class Program
@@ -5,6 +8,11 @@ namespace StoreAppUI
 		public static void Main(string[] args)
 		{
 			var builder = WebApplication.CreateBuilder(args);
+
+			#region DatabaseConnection
+			var connectionString = builder.Configuration.GetConnectionString("sqLiteConnection");
+			builder.Services.AddDbContext<StoreContext>(options => options.UseSqlite(connectionString));
+			#endregion
 
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();

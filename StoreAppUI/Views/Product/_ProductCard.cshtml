@@ -1,0 +1,25 @@
+﻿@model Product
+
+@* <div>
+	<h3>@Model.ProductName</h3>
+	<p>@Model.Price.ToString("c")</p>
+	<p>@Model.CreatedTime</p>
+	<a class="btn btn-primary" asp-action="Get" asp-route-id="@Model.Id">
+		<i class="fa-solid fa-arrow-right"></i>
+		Details
+		</a>
+</div> *@
+
+<div class="col-md-4 my-3 col-sm-6"> @*col-sm ekran boyutu kucukse row basına 2 urun getir md(medium ise row basına 3 tane getir vs.)*@
+	<div class="card" style="width: 18rem;">
+		<img src="/img/product.png" class="card-img-top" alt="...">
+		<div class="card-body">
+			<h5 class="card-title">@Model.ProductName</h5>
+			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			<a asp-action="Get" asp-route-id="@Model.Id" class="btn btn-primary">
+				<i class="fa-solid fa-arrow-right"></i>
+				Detail
+				</a>
+		</div>
+	</div>
+</div>

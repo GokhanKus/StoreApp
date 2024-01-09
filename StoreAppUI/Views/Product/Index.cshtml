@@ -1,0 +1,14 @@
+﻿@model List<Product>
+
+@section Footer {
+	<div>
+		Footer Section for Product Index.cshtml
+	</div>
+}
+<div class="row">
+	@foreach (var product in Model)
+	{
+		<partial name="_ProductCard" model="product" />
+		@* @await Html.PartialAsync("_ProductCard",product) *@
+	}
+</div>

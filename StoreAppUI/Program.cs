@@ -11,8 +11,8 @@ namespace StoreAppUI
 
 			#region DatabaseConnection
 			var connectionString = builder.Configuration.GetConnectionString("sqLiteConnection");
-			builder.Services.AddDbContext<StoreContext>(options => options.UseSqlite(connectionString));
-			//MigrationAssembly("StoreAppUI") bu ifade migration klasorunun storeappUI da olusturur, aksi taktirde dataaccesste olusturur.
+			builder.Services.AddDbContext<StoreContext>(options => options.UseSqlite(connectionString,b=>b.MigrationsAssembly("StoreAppUI")));
+			//MigrationAssembly("StoreApp.Model") bu ifade migration klasorunun StoreApp.Model da olusturur, aksi taktirde dataaccesste olusturur.
 			#endregion
 
 			// Add services to the container.

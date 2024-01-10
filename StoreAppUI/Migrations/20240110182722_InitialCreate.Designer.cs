@@ -2,17 +2,20 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StoreApp.DataAccess.Context;
 
 #nullable disable
 
-namespace StoreApp.DataAccess.Migrations
+namespace StoreAppUI.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20240110182722_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
@@ -43,7 +46,7 @@ namespace StoreApp.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedTime = new DateTime(2024, 1, 7, 14, 46, 50, 924, DateTimeKind.Local).AddTicks(7659),
+                            CreatedTime = new DateTime(2024, 1, 10, 21, 27, 21, 724, DateTimeKind.Local).AddTicks(3891),
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 30000m,
                             ProductName = "Laptop"
@@ -51,7 +54,7 @@ namespace StoreApp.DataAccess.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedTime = new DateTime(2024, 1, 7, 14, 46, 50, 924, DateTimeKind.Local).AddTicks(7663),
+                            CreatedTime = new DateTime(2024, 1, 10, 21, 27, 21, 724, DateTimeKind.Local).AddTicks(3897),
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 1000m,
                             ProductName = "Keyboard"
@@ -59,7 +62,7 @@ namespace StoreApp.DataAccess.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedTime = new DateTime(2024, 1, 7, 14, 46, 50, 924, DateTimeKind.Local).AddTicks(7665),
+                            CreatedTime = new DateTime(2024, 1, 10, 21, 27, 21, 724, DateTimeKind.Local).AddTicks(3899),
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 500m,
                             ProductName = "Mouse"
@@ -67,7 +70,7 @@ namespace StoreApp.DataAccess.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedTime = new DateTime(2024, 1, 7, 14, 46, 50, 924, DateTimeKind.Local).AddTicks(7666),
+                            CreatedTime = new DateTime(2024, 1, 10, 21, 27, 21, 724, DateTimeKind.Local).AddTicks(3901),
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 5000m,
                             ProductName = "Monitor"
@@ -75,7 +78,7 @@ namespace StoreApp.DataAccess.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedTime = new DateTime(2024, 1, 7, 14, 46, 50, 924, DateTimeKind.Local).AddTicks(7668),
+                            CreatedTime = new DateTime(2024, 1, 10, 21, 27, 21, 724, DateTimeKind.Local).AddTicks(3902),
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 1500m,
                             ProductName = "Deck"

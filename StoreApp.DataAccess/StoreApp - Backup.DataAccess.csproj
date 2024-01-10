@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 		<Folder Include="DataSeeding\" />
+		<Folder Include="ConcreteRepos\" />
 		<!--<Folder Include="Repositories\Abstract\" />
 		<Folder Include="Repositories\Concrete\" />-->
 	</ItemGroup>

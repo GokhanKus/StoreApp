@@ -1,5 +1,7 @@
 using StoreApp.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
+using StoreApp.DataAccess.AbstractRepos;
+using StoreApp.DataAccess.ConcreteRepos;
 
 namespace StoreAppUI
 {
@@ -18,7 +20,15 @@ namespace StoreAppUI
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
 
+			#region Injections
+
+			builder.Services.AddScoped<IRepositoryManager,RepositoryManager>();
+			builder.Services.AddScoped<IProductRepository,ProductRepository>();
+
+			#endregion
+
 			var app = builder.Build();
+
 
 			// Configure the HTTP request pipeline.
 			if (!app.Environment.IsDevelopment())

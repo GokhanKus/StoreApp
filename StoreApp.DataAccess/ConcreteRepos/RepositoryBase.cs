@@ -5,6 +5,7 @@ using StoreApp.Model.BaseEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +22,14 @@ namespace StoreApp.DataAccess.ConcreteRepos
 		{
 			return trackChanges ? _context.Set<TEntity>() //bu, bir liste geldi ve ef core listeyi izleyecek demek
 				: _context.Set<TEntity>().AsNoTracking(); //ama eger degisiklikler izlenmeyecekse yine ilgili nesneye set olacagiz 
+		}
+
+		public TEntity? FindByCondition(Expression<Func<TEntity, bool>> expression, bool trackChanges)
+		{
+			return trackChanges
+				? _context.Set<TEntity>().FirstOrDefault()
+				: _context.Set<TEntity>().AsNoTracking().FirstOrDefault();
+			//Set<> : belirtliecek olan TEntity'nin örnegini kaydetmek icin ve sorgulama yapılabilecek bir entity icin dbset olusturulur
 		}
 	}
 }

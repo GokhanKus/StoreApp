@@ -24,6 +24,7 @@ namespace StoreAppUI
 
 			builder.Services.AddScoped<IRepositoryManager,RepositoryManager>();
 			builder.Services.AddScoped<IProductRepository,ProductRepository>();
+			builder.Services.AddScoped<ICategoryRepository,CategoryRepository>();
 
 			#endregion
 

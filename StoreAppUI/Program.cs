@@ -2,6 +2,8 @@ using StoreApp.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using StoreApp.DataAccess.AbstractRepos;
 using StoreApp.DataAccess.ConcreteRepos;
+using StoreApp.Business.AbstractServices;
+using StoreApp.Business.ConcreteServices;
 
 namespace StoreAppUI
 {
@@ -25,6 +27,10 @@ namespace StoreAppUI
 			builder.Services.AddScoped<IRepositoryManager,RepositoryManager>();
 			builder.Services.AddScoped<IProductRepository,ProductRepository>();
 			builder.Services.AddScoped<ICategoryRepository,CategoryRepository>();
+
+			builder.Services.AddScoped<IServiceManager, ServiceManager>();
+			builder.Services.AddScoped<IProductService, ProductService>();
+			builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 			#endregion
 

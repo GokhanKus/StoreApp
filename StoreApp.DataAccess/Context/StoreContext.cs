@@ -35,6 +35,7 @@ namespace StoreApp.DataAccess.Context
 		}
 	}
 }
-//DataBase -> DBContext -> IRepositoryBase -> IProductRepository -> IRepositoryManager -> ProductController
-//(ProductService?)
+//DataBase -> DBContext -> IRepositoryBase -> IProductRepository -> IRepositoryManager -> Controller (servislerden sonra;)
+//DataBase -> DBContext -> IRepositoryBase -> IProductRepository -> IRepositoryManager -> IProductService -> IServiceManager -> Controller
+
 //IRepositoryBase ya da IGenericRepository temel (CRUD) islemlerin yapildiği genel bir classı temsil eder.

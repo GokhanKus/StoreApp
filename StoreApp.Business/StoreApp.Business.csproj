@@ -7,8 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Abstract\" />
-    <Folder Include="Services\Concrete\" />
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StoreApp.DataAccess\StoreApp.DataAccess.csproj" />
+    <ProjectReference Include="..\StoreApp.Model\StoreApp.Model.csproj" />
   </ItemGroup>
 
 </Project>

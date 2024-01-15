@@ -59,6 +59,8 @@ namespace StoreAppUI
 				endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 
 			});
+			//Area'lar kucuk mvc projeleri olarak dusunulebilir.
+
 			//app.MapAreaControllerRoute(
 			//	name: "Admin",
 			//	areaName: "Admin",

@@ -18,4 +18,8 @@
     <ProjectReference Include="..\StoreApp.DataAccess\StoreApp.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\" />
+  </ItemGroup>
+
 </Project>

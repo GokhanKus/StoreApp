@@ -4,6 +4,7 @@ using StoreApp.DataAccess.AbstractRepos;
 using StoreApp.DataAccess.ConcreteRepos;
 using StoreApp.Business.AbstractServices;
 using StoreApp.Business.ConcreteServices;
+using Microsoft.AspNetCore.Builder;
 
 namespace StoreAppUI
 {
@@ -15,7 +16,7 @@ namespace StoreAppUI
 
 			#region DatabaseConnection
 			var connectionString = builder.Configuration.GetConnectionString("sqLiteConnection");
-			builder.Services.AddDbContext<StoreContext>(options => options.UseSqlite(connectionString,b=>b.MigrationsAssembly("StoreAppUI")));
+			builder.Services.AddDbContext<StoreContext>(options => options.UseSqlite(connectionString, b => b.MigrationsAssembly("StoreAppUI")));
 			//MigrationAssembly("StoreApp.Model") bu ifade migration klasorunun StoreApp.Model da olusturur, aksi taktirde dataaccesste olusturur.
 			#endregion
 
@@ -24,9 +25,9 @@ namespace StoreAppUI
 
 			#region Injections
 
-			builder.Services.AddScoped<IRepositoryManager,RepositoryManager>();
-			builder.Services.AddScoped<IProductRepository,ProductRepository>();
-			builder.Services.AddScoped<ICategoryRepository,CategoryRepository>();
+			builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
+			builder.Services.AddScoped<IProductRepository, ProductRepository>();
+			builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 			builder.Services.AddScoped<IServiceManager, ServiceManager>();
 			builder.Services.AddScoped<IProductService, ProductService>();
@@ -48,9 +49,24 @@ namespace StoreAppUI
 
 			app.UseAuthorization();
 
-			app.MapControllerRoute(
-				name: "default",
-				pattern: "{controller=Home}/{action=Index}/{id?}");
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapAreaControllerRoute(
+					name: "Admin",
+					areaName: "Admin",
+					pattern: "Admin/{controller=Dashboard}/{action=Index}/{id?}"
+				);
+				endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+
+			});
+			//app.MapAreaControllerRoute(
+			//	name: "Admin",
+			//	areaName: "Admin",
+			//	pattern: "Admin/{controller=DashBoard}/{action=Index}/{id?}");
+
+			//app.MapControllerRoute(
+			//	name: "default",
+			//	pattern: "{controller=Home}/{action=Index}/{id?}");
 
 			app.Run();
 		}

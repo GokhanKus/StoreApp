@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StoreApp.Business.AbstractServices;
 
 namespace StoreAppUI.Areas.Admin.Controllers
 {
@@ -6,9 +7,17 @@ namespace StoreAppUI.Areas.Admin.Controllers
 	//Aynı controller isminden oldugu icin Area attribute'sini eklemek zorundayız.
 	public class ProductController : Controller
 	{
+		private readonly IServiceManager _manager;
+
+		public ProductController(IServiceManager manager)
+		{
+			_manager = manager;
+		}
+
 		public IActionResult Index()
 		{
-			return View();
+			var products = _manager.ProductService.GetAllProducts(false);
+			return View(products);
 		}
 	}
 }

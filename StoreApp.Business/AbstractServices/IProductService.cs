@@ -11,5 +11,6 @@ namespace StoreApp.Business.AbstractServices
 	{
 		public IEnumerable<Product> GetAllProducts(bool trackChanges);
 		public Product? GetOneProduct(int id, bool trackChanges);
+		public void CreateProduct(Product product);
 	}
 }

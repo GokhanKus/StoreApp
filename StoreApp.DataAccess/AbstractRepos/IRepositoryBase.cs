@@ -13,6 +13,7 @@ namespace StoreApp.DataAccess.AbstractRepos
 		IQueryable<TEntity> FindAll(bool trackChanges);//EF Core'un performansini artirmak icin degisiklikleri izleyelim??(trackChanges)
 		//IEnumerable<TEntity> FindAll(bool trackChanges);
 		TEntity? FindByCondition(Expression<Func<TEntity, bool>> expression, bool trackChanges);
+		void Create (TEntity entity);
 	}
 }
 

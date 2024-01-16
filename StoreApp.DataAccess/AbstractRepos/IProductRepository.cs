@@ -12,5 +12,6 @@ namespace StoreApp.DataAccess.AbstractRepos
 	{
 		IQueryable<Product> GetAllProducts(bool trackChanges);
 		public Product? GetOneProduct(int id, bool trackChanges);
+		void CreateProduct(Product product);
 	}
 }

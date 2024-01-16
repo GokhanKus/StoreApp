@@ -18,6 +18,12 @@ namespace StoreApp.DataAccess.ConcreteRepos
 		{
 			_context = context;
 		}
+
+		public void Create(TEntity entity)
+		{
+			_context.Set<TEntity>().Add(entity);
+		}
+
 		public IQueryable<TEntity> FindAll(bool trackChanges)
 		{
 			return trackChanges ? _context.Set<TEntity>() //bu, bir liste geldi ve ef core listeyi izleyecek demek

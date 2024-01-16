@@ -15,6 +15,7 @@ namespace StoreApp.DataAccess.ConcreteRepos
 		{
 
 		}
+		public void CreateProduct(Product product) => Create(product);
 		public IQueryable<Product> GetAllProducts(bool trackChanges) => FindAll(trackChanges);
 		public Product? GetOneProduct(int id, bool trackChanges)
 		{

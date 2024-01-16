@@ -19,6 +19,13 @@ namespace StoreApp.Business.ConcreteServices
 			_manager = manager;
 		}
 
+		public void CreateProduct(Product product)
+		{
+			//_manager.Product.Create(product); hangisini kullanmaliyiz? (2side sonuc olarak base repoya gidiyor.)
+			_manager.Product.CreateProduct(product);
+			_manager.Save();
+		}
+
 		public IEnumerable<Product> GetAllProducts(bool trackChanges)
 		{
 			return _manager.Product.GetAllProducts(trackChanges);

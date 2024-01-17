@@ -33,8 +33,13 @@ namespace StoreApp.DataAccess.ConcreteRepos
 		public TEntity? FindByCondition(Expression<Func<TEntity, bool>> expression, bool trackChanges)
 		{
 			return trackChanges
-				? _context.Set<TEntity>().FirstOrDefault()
-				: _context.Set<TEntity>().AsNoTracking().FirstOrDefault();
+				? _context.Set<TEntity>().FirstOrDefault(expression)
+				: _context.Set<TEntity>().AsNoTracking().FirstOrDefault(expression);
+
+			//return trackChanges
+			//	? _context.Set<TEntity>().Where(expression).SingleOrDefault()
+			//	: _context.Set<TEntity>().Where(expression).AsNoTracking().SingleOrDefault();
+
 			//Set<> : belirtliecek olan TEntity'nin örnegini kaydetmek icin ve sorgulama yapılabilecek bir entity icin dbset olusturulur
 		}
 	}

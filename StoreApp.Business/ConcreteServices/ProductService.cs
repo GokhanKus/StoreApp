@@ -40,5 +40,18 @@ namespace StoreApp.Business.ConcreteServices
 			}
 			return product;
 		}
+
+		public void UpdateOneProduct(Product product)
+		{
+			//repository classlarında da tanımlamamıza gerek kalmadı, cunku ef core ilgili varligi izledigi icin bu ifadeleri dogrudan yerine getirmis oldu??
+			var entity = _manager.Product.GetOneProduct(product.Id, true);
+			if (entity != null)
+			{
+				entity.ProductName = product.ProductName;
+				entity.Price = product.Price;
+				entity.ModifiedTime = DateTime.Now;
+			}
+			_manager.Save();
+		}
 	}
 }

@@ -19,7 +19,8 @@ namespace StoreApp.DataAccess.ConcreteRepos
 		public IQueryable<Product> GetAllProducts(bool trackChanges) => FindAll(trackChanges);
 		public Product? GetOneProduct(int id, bool trackChanges)
 		{
-			return FindByCondition(p => p.Id == id, false);
+			//return FindByCondition(p => p.Id == id, false);alttakiyle aynı
+			return FindByCondition(p => p.Id.Equals(id), trackChanges);
 		}
 	}
 }

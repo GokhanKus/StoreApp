@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StoreApp.DataAccess.Config;
 using StoreApp.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,18 +22,12 @@ namespace StoreApp.DataAccess.Context
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			//base.OnModelCreating(modelBuilder);
-			modelBuilder.Entity<Product>().HasData(
-				new Product { Id = 1, CreatedTime = DateTime.Now, ProductName = "Laptop", Price = 30_000 },
-				new Product { Id = 2, CreatedTime = DateTime.Now, ProductName = "Keyboard", Price = 1_000 },
-				new Product { Id = 3, CreatedTime = DateTime.Now, ProductName = "Mouse", Price = 500 },
-				new Product { Id = 4, CreatedTime = DateTime.Now, ProductName = "Monitor", Price = 5_000 },
-				new Product { Id = 5, CreatedTime = DateTime.Now, ProductName = "Deck", Price = 1_500 }
-				);
+			//modelBuilder.ApplyConfiguration(new ProductConfig());  hazirladigimiz config(seeding) classlarını bu sekilde cagirabiiriz (1.yol)
+			//modelBuilder.ApplyConfiguration(new CategoryConfig()); 
 
-			modelBuilder.Entity<Category>().HasData(
-				new Category { Id = 1, CreatedTime = DateTime.Now, CategoryName = "Book" },
-				new Category { Id = 2, CreatedTime = DateTime.Now, CategoryName = "Electronic" }
-				);
+			//2.yol;
+			modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());//artik yeni tip kaydi yaptigimizda gelip burada onu tanimlamamiza gerek olmayacak, ilgili ifade dinamik olarak cozulecek.
+			//Category tablomuzdaki "Id" alani primary keydir ve o column Product table'da "CategoryId" dir ve foreign keydir.
 		}
 	}
 }

@@ -15,6 +15,8 @@ namespace StoreApp.Model.Entities
 
 		[Required(ErrorMessage = "Price field is required")]
 		public decimal Price{ get; set; }
+        public int? CategoryId { get; set; }     //Foreign Key
+        public Category? Category { get; set; } //Navigation Property
     }
 }
 //ilerleyen asamalarda validasyon islemlerini baska yerde yapacagiz bu classın sorumlulugu sadece entityleri (varlıklari)temsil etmektedir

@@ -24,6 +24,7 @@ namespace StoreAppUI.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CategoryName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedTime")
@@ -41,14 +42,14 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 1,
                             CategoryName = "Book",
-                            CreatedTime = new DateTime(2024, 1, 13, 12, 30, 53, 397, DateTimeKind.Local).AddTicks(8748),
+                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(2539),
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
                             CategoryName = "Electronic",
-                            CreatedTime = new DateTime(2024, 1, 13, 12, 30, 53, 397, DateTimeKind.Local).AddTicks(8750),
+                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(2546),
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -57,6 +58,9 @@ namespace StoreAppUI.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedTime")
@@ -69,9 +73,12 @@ namespace StoreAppUI.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ProductName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
 
@@ -79,7 +86,8 @@ namespace StoreAppUI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedTime = new DateTime(2024, 1, 13, 12, 30, 53, 397, DateTimeKind.Local).AddTicks(8607),
+                            CategoryId = 1,
+                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(3999),
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 30000m,
                             ProductName = "Laptop"
@@ -87,7 +95,8 @@ namespace StoreAppUI.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedTime = new DateTime(2024, 1, 13, 12, 30, 53, 397, DateTimeKind.Local).AddTicks(8614),
+                            CategoryId = 1,
+                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(4003),
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 1000m,
                             ProductName = "Keyboard"
@@ -95,7 +104,8 @@ namespace StoreAppUI.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedTime = new DateTime(2024, 1, 13, 12, 30, 53, 397, DateTimeKind.Local).AddTicks(8616),
+                            CategoryId = 1,
+                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(4005),
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 500m,
                             ProductName = "Mouse"
@@ -103,7 +113,8 @@ namespace StoreAppUI.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedTime = new DateTime(2024, 1, 13, 12, 30, 53, 397, DateTimeKind.Local).AddTicks(8618),
+                            CategoryId = 1,
+                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(4007),
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 5000m,
                             ProductName = "Monitor"
@@ -111,11 +122,44 @@ namespace StoreAppUI.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedTime = new DateTime(2024, 1, 13, 12, 30, 53, 397, DateTimeKind.Local).AddTicks(8619),
+                            CategoryId = 1,
+                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(4008),
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 1500m,
                             ProductName = "Deck"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 2,
+                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(4010),
+                            ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Price = 55m,
+                            ProductName = "History"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 2,
+                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(4012),
+                            ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Price = 45m,
+                            ProductName = "Hamlet"
                         });
+                });
+
+            modelBuilder.Entity("StoreApp.Model.Entities.Product", b =>
+                {
+                    b.HasOne("StoreApp.Model.Entities.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId");
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("StoreApp.Model.Entities.Category", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

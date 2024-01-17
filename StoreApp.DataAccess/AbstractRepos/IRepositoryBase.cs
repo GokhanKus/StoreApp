@@ -14,6 +14,7 @@ namespace StoreApp.DataAccess.AbstractRepos
 		//IEnumerable<TEntity> FindAll(bool trackChanges);
 		TEntity? FindByCondition(Expression<Func<TEntity, bool>> expression, bool trackChanges);
 		void Create (TEntity entity);
+		void Remove(TEntity entity);
 	}
 }
 

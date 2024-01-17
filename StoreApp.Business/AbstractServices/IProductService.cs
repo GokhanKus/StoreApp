@@ -13,5 +13,6 @@ namespace StoreApp.Business.AbstractServices
 		public Product? GetOneProduct(int id, bool trackChanges);
 		public void CreateProduct(Product product);
 		void UpdateOneProduct(Product product);
+		void DeleteOneProduct(int id);
 	}
 }

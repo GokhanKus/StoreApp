@@ -22,8 +22,18 @@ namespace StoreApp.Business.ConcreteServices
 		public void CreateProduct(Product product)
 		{
 			//_manager.Product.Create(product); hangisini kullanmaliyiz? (2side sonuc olarak base repoya gidiyor.)
-			_manager.Product.CreateProduct(product);
+			_manager.Product.CreateOneProduct(product);
 			_manager.Save();
+		}
+
+		public void DeleteOneProduct(int id)
+		{
+			Product? product = _manager.Product.GetOneProduct(id, false);
+			if (product is not null)
+			{
+				_manager.Product.DeleteOneProduct(product);
+				_manager.Save();
+			}
 		}
 
 		public IEnumerable<Product> GetAllProducts(bool trackChanges)

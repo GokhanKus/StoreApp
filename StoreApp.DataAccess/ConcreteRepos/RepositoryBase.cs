@@ -23,6 +23,10 @@ namespace StoreApp.DataAccess.ConcreteRepos
 		{
 			_context.Set<TEntity>().Add(entity);
 		}
+		public void Remove(TEntity entity)
+		{
+			_context.Set<TEntity>().Remove(entity);
+		}
 
 		public IQueryable<TEntity> FindAll(bool trackChanges)
 		{
@@ -42,5 +46,6 @@ namespace StoreApp.DataAccess.ConcreteRepos
 
 			//Set<> : belirtliecek olan TEntity'nin örnegini kaydetmek icin ve sorgulama yapılabilecek bir entity icin dbset olusturulur
 		}
+
 	}
 }

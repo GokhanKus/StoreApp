@@ -2,14 +2,14 @@
   "version": "1.0",
   "defaultProvider": "cdnjs",
   "libraries": [
-    {
-      "library": "bootstrap@5.1.0",
-      "destination": "StoreAppUI/wwwroot/lib/bootstrap/"
-    },
-    {
-      "library": "jquery@3.6.0",
-      "destination": "StoreAppUI/wwwroot/lib/jquery/" //libman.json kök dizinde oldugu icin hata verirse (path'i bulamazsa) destitanion basina StoreAppUI yazılabilir
-    },
+    //{
+    //  "library": "bootstrap@5.1.0",
+    //  "destination": "StoreAppUI/wwwroot/lib/bootstrap/"
+    //},
+    //{
+    //  "library": "jquery@3.6.0",
+    //  "destination": "StoreAppUI/wwwroot/lib/jquery/" //libman.json kök dizinde oldugu icin hata verirse (path'i bulamazsa) destitanion basina StoreAppUI yazılabilir
+    //},
     {
       "library": "font-awesome@6.5.1",
       "destination": "StoreAppUI/wwwroot/lib/font-awesome"

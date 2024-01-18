@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using StoreApp.Business.AbstractServices;
+using StoreApp.DataAccess.Context;
 using StoreApp.Model.Entities;
 
 namespace StoreAppUI.Areas.Admin.Controllers
@@ -9,7 +11,6 @@ namespace StoreAppUI.Areas.Admin.Controllers
 	public class ProductController : Controller
 	{
 		private readonly IServiceManager _manager;
-
 		public ProductController(IServiceManager manager)
 		{
 			_manager = manager;
@@ -22,6 +23,10 @@ namespace StoreAppUI.Areas.Admin.Controllers
 		}
 		public IActionResult Create()
 		{
+			ViewBag.Categories =
+				new SelectList(_manager.CategoryService.GetAllCategories(false), "Id", "CategoryName", "1");
+			//secilebilir bir liste tanımı olusturduk ve dbdeki kayitlari item olarak belirledik
+			//Id veri alani, CategoryName text alani ve id'si 1 olan default olarak secili gelsin ve artik cshtmlde foreach gerek yok
 			return View();
 		}
 

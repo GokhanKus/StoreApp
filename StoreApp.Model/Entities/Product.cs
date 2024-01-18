@@ -10,10 +10,7 @@ namespace StoreApp.Model.Entities
 {
 	public class Product:BaseEntity
     {
-        [Required(ErrorMessage = "ProductName Field is required")]
         public string? ProductName { get; set; }
-
-		[Required(ErrorMessage = "Price field is required")]
 		public decimal Price{ get; set; }
         public int? CategoryId { get; set; }     //Foreign Key
         public Category? Category { get; set; } //Navigation Property

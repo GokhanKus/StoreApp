@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using StoreApp.Business.AbstractServices;
 using StoreApp.DataAccess.Context;
+using StoreApp.Model.DTOs;
 using StoreApp.Model.Entities;
 
 namespace StoreAppUI.Areas.Admin.Controllers
@@ -32,11 +33,11 @@ namespace StoreAppUI.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Create([FromForm] Product product) //productın formdan geldigini söylüyoruz.
+		public IActionResult Create([FromForm] ProductDtoForInsertion productDto) //productın formdan geldigini söylüyoruz.
 		{
 			if (ModelState.IsValid)
 			{
-				_manager.ProductService.CreateProduct(product);
+				_manager.ProductService.CreateProduct(productDto);
 				return RedirectToAction("Index");
 			}
 			return View();

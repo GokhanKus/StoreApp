@@ -5,6 +5,8 @@ using StoreApp.DataAccess.ConcreteRepos;
 using StoreApp.Business.AbstractServices;
 using StoreApp.Business.ConcreteServices;
 using Microsoft.AspNetCore.Builder;
+using AutoMapper;
+using StoreApp.Business.Mapper;
 
 namespace StoreAppUI
 {
@@ -35,8 +37,10 @@ namespace StoreAppUI
 
 			#endregion
 
-			var app = builder.Build();
+			//builder.Services.AddAutoMapper(typeof(Program));//automapper eklendi
+			builder.Services.AddAutoMapper(typeof(MappingProfile)); // MappingProfile'ý ekleyin
 
+			var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
 			if (!app.Environment.IsDevelopment())

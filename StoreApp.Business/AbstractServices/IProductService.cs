@@ -1,4 +1,5 @@
-﻿using StoreApp.Model.Entities;
+﻿using StoreApp.Model.DTOs;
+using StoreApp.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace StoreApp.Business.AbstractServices
 	{
 		public IEnumerable<Product> GetAllProducts(bool trackChanges);
 		public Product? GetOneProduct(int id, bool trackChanges);
-		public void CreateProduct(Product product);
+		public void CreateProduct(ProductDtoForInsertion productDto);
 		void UpdateOneProduct(Product product);
 		void DeleteOneProduct(int id);
 	}

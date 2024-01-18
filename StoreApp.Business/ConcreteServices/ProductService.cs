@@ -1,5 +1,7 @@
-﻿using StoreApp.Business.AbstractServices;
+﻿using AutoMapper;
+using StoreApp.Business.AbstractServices;
 using StoreApp.DataAccess.AbstractRepos;
+using StoreApp.Model.DTOs;
 using StoreApp.Model.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,14 +15,26 @@ namespace StoreApp.Business.ConcreteServices
 	public class ProductService : IProductService
 	{
 		private readonly IRepositoryManager _manager;
-
-		public ProductService(IRepositoryManager manager)
+		private readonly IMapper _mapper;
+		public ProductService(IRepositoryManager manager, IMapper mapper)
 		{
 			_manager = manager;
+			_mapper = mapper;
 		}
 
-		public void CreateProduct(Product product)
+		public void CreateProduct(ProductDtoForInsertion productDto)
 		{
+			#region Auto Mapper'dan once
+			//auto mapper kullanmazsak bu sekilde veri transferi yapariz, ancak proplar çok daha fazla olabilir ve her biri icin manuel yazmak zahmetli o yüzden auto mapper..
+			//var product = new Product
+			//{
+			//	ProductName = productDto.ProductName,
+			//	Price = productDto.Price,
+			//	CategoryId = productDto.CategoryId,
+			//};
+			#endregion
+
+			Product product = _mapper.Map<Product>(productDto); //auto mapper sayesinde ustteki gibi yazmak zorunda kalmadık.
 			//_manager.Product.Create(product); hangisini kullanmaliyiz? (2side sonuc olarak base repoya gidiyor.)
 			_manager.Product.CreateOneProduct(product);
 			_manager.Save();

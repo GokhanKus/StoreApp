@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\StoreApp.DataAccess\StoreApp.DataAccess.csproj" />
     <ProjectReference Include="..\StoreApp.Model\StoreApp.Model.csproj" />
   </ItemGroup>

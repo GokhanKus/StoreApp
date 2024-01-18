@@ -13,7 +13,7 @@ namespace StoreApp.Model.DTOs
         //set olur ise immutable olma ozelligi saglanmaz, immutable olma ozelligi veriyi olustururken o verinin degismeyecegi yonunde garanti sunmus oluruz.
         //eger propler immutable olacaksa set; kısmı yerine init; yazarız ve o ozellik bize sadece nesne olusturulurken set etmemize izin verir
         //ama nesne olustuktan sonra nesne uzerınde degisiklik yapmamıza izin vermezi cunku immutable(degismez, sabit) yaptık
-        public int ProductId { get; init; }
+        public int Id { get; init; }
 
 		[Required(ErrorMessage = "ProductName Field is required")]
 		public string? ProductName { get; init; }

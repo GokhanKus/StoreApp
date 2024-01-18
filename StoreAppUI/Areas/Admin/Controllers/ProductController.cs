@@ -24,13 +24,12 @@ namespace StoreAppUI.Areas.Admin.Controllers
 		}
 		public IActionResult Create()
 		{
-			ViewBag.Categories =
-				new SelectList(_manager.CategoryService.GetAllCategories(false), "Id", "CategoryName", "1");
+			ViewBag.Categories = GetCategories();
+
 			//secilebilir bir liste tanımı olusturduk ve dbdeki kayitlari item olarak belirledik
 			//Id veri alani, CategoryName text alani ve id'si 1 olan default olarak secili gelsin ve artik cshtmlde foreach gerek yok
 			return View();
 		}
-
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult Create([FromForm] ProductDtoForInsertion productDto) //productın formdan geldigini söylüyoruz.
@@ -44,26 +43,32 @@ namespace StoreAppUI.Areas.Admin.Controllers
 		}
 		public IActionResult Update(int id)
 		{
-			var product = _manager.ProductService.GetOneProduct(id, false);
+			ViewBag.Categories = GetCategories();
+
+			var product = _manager.ProductService.GetOneProductForUpdate(id, false);
 			return View(product);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Update(int id, Product product)
+		public IActionResult Update([FromForm] ProductDtoForUpdate productDto)
 		{
 			if (ModelState.IsValid)
 			{
-				_manager.ProductService.UpdateOneProduct(product);
+				_manager.ProductService.UpdateOneProduct(productDto);
 				return RedirectToAction("Index");
 			}
 			return View();
 		}
 		[HttpGet]
-		public IActionResult Delete([FromRoute(Name = "id")]int id)
+		public IActionResult Delete([FromRoute(Name = "id")] int id)
 		{
 			_manager.ProductService.DeleteOneProduct(id);
 			return RedirectToAction("Index");
+		}
+		private SelectList GetCategories()
+		{
+			return new SelectList(_manager.CategoryService.GetAllCategories(false), "Id", "CategoryName", "1");
 		}
 	}
 }

@@ -35,7 +35,7 @@ namespace StoreApp.Business.ConcreteServices
 			#endregion
 
 			Product product = _mapper.Map<Product>(productDto); //auto mapper sayesinde ustteki gibi yazmak zorunda kalmadık.
-			//_manager.Product.Create(product); hangisini kullanmaliyiz? (2side sonuc olarak base repoya gidiyor.)
+																//_manager.Product.Create(product); hangisini kullanmaliyiz? (2side sonuc olarak base repoya gidiyor.)
 			_manager.Product.CreateOneProduct(product);
 			_manager.Save();
 		}
@@ -65,16 +65,29 @@ namespace StoreApp.Business.ConcreteServices
 			return product;
 		}
 
-		public void UpdateOneProduct(Product product)
+		public ProductDtoForUpdate GetOneProductForUpdate(int id, bool trackChanges)
 		{
+			var product = GetOneProduct(id, trackChanges);
+			var productDto = _mapper.Map<ProductDtoForUpdate>(product);
+			return productDto;
+		}
+
+		public void UpdateOneProduct(ProductDtoForUpdate productDto)
+		{
+			#region Auto mapper kullanmadan update
 			//repository classlarında da tanımlamamıza gerek kalmadı, cunku ef core ilgili varligi izledigi icin bu ifadeleri dogrudan yerine getirmis oldu??
-			var entity = _manager.Product.GetOneProduct(product.Id, true);
-			if (entity != null)
-			{
-				entity.ProductName = product.ProductName;
-				entity.Price = product.Price;
-				entity.ModifiedTime = DateTime.Now;
-			}
+			//var entity = _manager.Product.GetOneProduct(productDto.Id, true);
+			//if (entity != null)
+			//{
+			//	entity.ProductName = productDto.ProductName;
+			//	entity.Price = productDto.Price;
+			//	entity.CategoryId = productDto.CategoryId;
+			//	entity.ModifiedTime = DateTime.Now;
+			//	_manager.Save();
+			//}
+			#endregion
+			var entity = _mapper.Map<Product>(productDto);
+			_manager.Product.UpdateOneProduct(entity); 
 			_manager.Save();
 		}
 	}

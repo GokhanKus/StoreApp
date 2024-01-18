@@ -15,6 +15,7 @@ namespace StoreApp.DataAccess.AbstractRepos
 		TEntity? FindByCondition(Expression<Func<TEntity, bool>> expression, bool trackChanges);
 		void Create (TEntity entity);
 		void Remove(TEntity entity);
+		void Update(TEntity entity);
 	}
 }
 

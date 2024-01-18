@@ -16,14 +16,14 @@ namespace StoreApp.DataAccess.ConcreteRepos
 
 		}
 		public void CreateOneProduct(Product product) => Create(product);
-
 		public void DeleteOneProduct(Product product) => Remove(product);
-
+		public void UpdateOneProduct(Product entity) => Update(entity);
 		public IQueryable<Product> GetAllProducts(bool trackChanges) => FindAll(trackChanges);
 		public Product? GetOneProduct(int id, bool trackChanges)
 		{
 			//return FindByCondition(p => p.Id == id, false);alttakiyle aynı
 			return FindByCondition(p => p.Id.Equals(id), trackChanges);
 		}
+
 	}
 }

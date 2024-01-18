@@ -18,7 +18,6 @@ namespace StoreApp.DataAccess.ConcreteRepos
 		{
 			_context = context;
 		}
-
 		public void Create(TEntity entity)
 		{
 			_context.Set<TEntity>().Add(entity);
@@ -27,13 +26,15 @@ namespace StoreApp.DataAccess.ConcreteRepos
 		{
 			_context.Set<TEntity>().Remove(entity);
 		}
-
+		public void Update(TEntity entity)
+		{
+			_context.Set<TEntity>().Update(entity);
+		}
 		public IQueryable<TEntity> FindAll(bool trackChanges)
 		{
 			return trackChanges ? _context.Set<TEntity>() //bu, bir liste geldi ve ef core listeyi izleyecek demek
 				: _context.Set<TEntity>().AsNoTracking(); //ama eger degisiklikler izlenmeyecekse yine ilgili nesneye set olacagiz 
 		}
-
 		public TEntity? FindByCondition(Expression<Func<TEntity, bool>> expression, bool trackChanges)
 		{
 			return trackChanges
@@ -46,6 +47,5 @@ namespace StoreApp.DataAccess.ConcreteRepos
 
 			//Set<> : belirtliecek olan TEntity'nin örnegini kaydetmek icin ve sorgulama yapılabilecek bir entity icin dbset olusturulur
 		}
-
 	}
 }

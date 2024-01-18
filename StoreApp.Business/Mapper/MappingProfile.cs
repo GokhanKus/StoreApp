@@ -14,6 +14,10 @@ namespace StoreApp.Business.Mapper
 		public MappingProfile()
 		{
 			CreateMap<ProductDtoForInsertion, Product>(); //dtodan product'a veriler maplenecek
+
+			CreateMap<ProductDtoForUpdate, Product>().ReverseMap();
+			
+			//sourceden destinationa ama update islemi yaptigimiz icin veriyi cekerken veriyi goruntulemek icin producttan ProductDtoForUpdateya veri maplememiz lazım yani reverse.
 		}
 	}
 }

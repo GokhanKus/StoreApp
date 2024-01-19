@@ -11,7 +11,7 @@ using StoreApp.DataAccess.Context;
 namespace StoreAppUI.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20240117172147_InitialCreate")]
+    [Migration("20240119095730_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -45,14 +45,14 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 1,
                             CategoryName = "Book",
-                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(2539),
+                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 821, DateTimeKind.Local).AddTicks(9601),
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
                             CategoryName = "Electronic",
-                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(2546),
+                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 821, DateTimeKind.Local).AddTicks(9604),
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -69,6 +69,9 @@ namespace StoreAppUI.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("ModifiedTime")
                         .HasColumnType("TEXT");
 
@@ -77,6 +80,9 @@ namespace StoreAppUI.Migrations
 
                     b.Property<string>("ProductName")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Summary")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -89,65 +95,79 @@ namespace StoreAppUI.Migrations
                         new
                         {
                             Id = 1,
-                            CategoryId = 1,
-                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(3999),
+                            CategoryId = 2,
+                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 822, DateTimeKind.Local).AddTicks(1111),
+                            ImageUrl = "1.jpg",
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 30000m,
-                            ProductName = "Laptop"
+                            ProductName = "Laptop",
+                            Summary = ""
                         },
                         new
                         {
                             Id = 2,
-                            CategoryId = 1,
-                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(4003),
+                            CategoryId = 2,
+                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 822, DateTimeKind.Local).AddTicks(1113),
+                            ImageUrl = "2.jpg",
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 1000m,
-                            ProductName = "Keyboard"
+                            ProductName = "Keyboard",
+                            Summary = ""
                         },
                         new
                         {
                             Id = 3,
-                            CategoryId = 1,
-                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(4005),
+                            CategoryId = 2,
+                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 822, DateTimeKind.Local).AddTicks(1188),
+                            ImageUrl = "3.jpg",
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 500m,
-                            ProductName = "Mouse"
+                            ProductName = "Mouse",
+                            Summary = ""
                         },
                         new
                         {
                             Id = 4,
-                            CategoryId = 1,
-                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(4007),
+                            CategoryId = 2,
+                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 822, DateTimeKind.Local).AddTicks(1190),
+                            ImageUrl = "4.jpg",
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 5000m,
-                            ProductName = "Monitor"
+                            ProductName = "Monitor",
+                            Summary = ""
                         },
                         new
                         {
                             Id = 5,
-                            CategoryId = 1,
-                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(4008),
+                            CategoryId = 2,
+                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 822, DateTimeKind.Local).AddTicks(1192),
+                            ImageUrl = "5.jpg",
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 1500m,
-                            ProductName = "Deck"
+                            ProductName = "Deck",
+                            Summary = ""
                         },
                         new
                         {
                             Id = 6,
-                            CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(4010),
+                            CategoryId = 1,
+                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 822, DateTimeKind.Local).AddTicks(1193),
+                            ImageUrl = "6.jpg",
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Price = 55m,
-                            ProductName = "History"
+                            Price = 165m,
+                            ProductName = "Guns, Germs and Steel",
+                            Summary = ""
                         },
                         new
                         {
                             Id = 7,
-                            CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 1, 17, 20, 21, 46, 929, DateTimeKind.Local).AddTicks(4012),
+                            CategoryId = 1,
+                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 822, DateTimeKind.Local).AddTicks(1195),
+                            ImageUrl = "7.jpg",
                             ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 45m,
-                            ProductName = "Hamlet"
+                            ProductName = "1984",
+                            Summary = ""
                         });
                 });
 

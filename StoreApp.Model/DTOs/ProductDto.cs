@@ -20,6 +20,8 @@ namespace StoreApp.Model.DTOs
 
 		[Required(ErrorMessage = "Price field is required")]
 		public decimal Price { get; init; }
+		public string? Summary { get; init; } = string.Empty; //init(initialize) aşamasında degeri verilecek sekilde ayarladık o yüzden init;
+		public string? ImageUrl { get; set; } //ama resim atama islemini daha sonra yapacagim icin burası set; olarak kaldı
 		public int? CategoryId { get; init; }     //Foreign Key
 	}
 }

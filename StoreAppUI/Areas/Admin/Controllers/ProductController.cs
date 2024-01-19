@@ -32,10 +32,28 @@ namespace StoreAppUI.Areas.Admin.Controllers
 		}
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Create([FromForm] ProductDtoForInsertion productDto) //productın formdan geldigini söylüyoruz.
+		public async Task<IActionResult> Create([FromForm] ProductDtoForInsertion productDto, IFormFile? file) //productın formdan geldigini söylüyoruz.
 		{
 			if (ModelState.IsValid)
 			{
+				if (file != null)
+				{
+					string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img", file.FileName);
+					#region using aciklama
+					//using ifadesini, kaynak gerektiren maliyeti yuksek olan operasyonları yuruturken kullanırız.
+					//using ifadesi: using ifadesi, IDisposable arabirimine sahip nesnelerin kullanıldıktan sonra temizlenmesi için kullanılır.
+					//Bu ifade ile belirtilen nesneler kod bloğundan çıktıktan sonra(usingden cikinca) otomatik olarak kapatılır ve kaynaklar serbest bırakılır.
+					#endregion
+					using (var stream = new FileStream(path, FileMode.Create))//file varsa uzerine yazacak
+					{
+						await file.CopyToAsync(stream);
+					}
+					//productDto.ImageUrl = string.Concat("/img/", file.FileName);
+					productDto.ImageUrl = file.FileName; //imageurl = "1.jpg", "2.jpg" vs. oldugu icin concata gerek yok.
+				}
+
+				else productDto.ImageUrl = "product.png"; //resim eklemek zorunlu olmasın ya da client sonradan ekleyebilsin ama eklemezse default olarak bir resim gelsin
+
 				_manager.ProductService.CreateProduct(productDto);
 				return RedirectToAction("Index");
 			}
@@ -51,10 +69,26 @@ namespace StoreAppUI.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Update([FromForm] ProductDtoForUpdate productDto)
+		public async Task<IActionResult> Update([FromForm] ProductDtoForUpdate productDto, IFormFile? file) //create asamasında resim eklenmezse bile default resim atadık o yüzden nullable olmasına gerek yok.
 		{
 			if (ModelState.IsValid)
 			{
+				if (file != null)
+				{
+					string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img", file.FileName);
+					#region using aciklama
+					//using ifadesini, kaynak gerektiren maliyeti yuksek olan operasyonları yuruturken kullanırız.
+					//using ifadesi: using ifadesi, IDisposable arabirimine sahip nesnelerin kullanıldıktan sonra temizlenmesi için kullanılır.
+					//Bu ifade ile belirtilen nesneler kod bloğundan çıktıktan sonra(usingden cikinca) otomatik olarak kapatılır ve kaynaklar serbest bırakılır.
+					#endregion
+					using (var stream = new FileStream(path, FileMode.Create))//file varsa uzerine yazacak
+					{
+						await file.CopyToAsync(stream);
+					}
+					//productDto.ImageUrl = string.Concat("/img/", file.FileName);
+					productDto.ImageUrl = file.FileName; //imageurl = "1.jpg", "2.jpg" vs. oldugu icin concata gerek yok.
+				}
+
 				_manager.ProductService.UpdateOneProduct(productDto);
 				return RedirectToAction("Index");
 			}

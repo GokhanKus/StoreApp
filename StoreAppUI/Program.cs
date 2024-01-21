@@ -24,7 +24,7 @@ namespace StoreAppUI
 
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
-
+			builder.Services.AddRazorPages();//artik controllerlar olmadan razor pageleri kullanabiliriz.
 			#region Injections
 
 			builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
@@ -61,7 +61,7 @@ namespace StoreAppUI
 					pattern: "Admin/{controller=Dashboard}/{action=Index}/{id?}"
 				);
 				endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-
+				endpoints.MapRazorPages(); //routing mekanizmasýnda bir problem yasamamamak icin ve endpointlerin uyusmasi icin bu satiri yazdýk.
 			});
 			//Area'lar kucuk mvc projeleri olarak dusunulebilir.
 

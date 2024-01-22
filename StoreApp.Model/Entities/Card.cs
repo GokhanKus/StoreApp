@@ -29,7 +29,7 @@ namespace StoreApp.Model.Entities
 				line.Quantity += quantity;
 			}
 		}
-		public void RemoveItem(Product product) =>
+		public void RemoveLine(Product product) =>
 			CardLines.RemoveAll(c => c.Product.Id == product.Id);
 		public decimal ComputeTotalValue() =>
 			CardLines.Sum(i => i.Product.Price * i.Quantity);

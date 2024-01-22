@@ -89,6 +89,9 @@ namespace StoreAppUI.Areas.Admin.Controllers
 					productDto.ImageUrl = file.FileName; //imageurl = "1.jpg", "2.jpg" vs. oldugu icin concata gerek yok.
 				}
 
+				//else productDto.ImageUrl = "product.png"; default one 
+				//else productDto.ImageUrl = ImageUrl;
+
 				_manager.ProductService.UpdateOneProduct(productDto);
 				return RedirectToAction("Index");
 			}

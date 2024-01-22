@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace StoreApp.Model.Entities
 {
-	public class CardLine
+	public class CartLine
 	{
-        public int CardLineId { get; set; }
+        public int CartLineId { get; set; }
         public Product Product { get; set; } = new();
         public int Quantity { get; set; }
     }

@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace StoreApp.Model.Entities
 {
-	public class Card
+	public class Cart
 	{
-		public List<CardLine> CardLines { get; set; }
-		public Card()
+		public List<CartLine> CartLines { get; set; }
+		public Cart()
 		{
-			CardLines = new List<CardLine>();
+			CartLines = new List<CartLine>();
 		}
 		public void AddItem(Product product, int quantity)//metot imzası ilerde virtual olabilir, cunku bu metodu ezebiliriz.
 		{
-			CardLine? line = CardLines.Where(c => c.Product.Id == product.Id).FirstOrDefault();
+			CartLine? line = CartLines.Where(c => c.Product.Id == product.Id).FirstOrDefault();
 			if (line is null)
 			{
-				CardLines.Add(new CardLine
+				CartLines.Add(new CartLine
 				{
 					Product = product,
 					Quantity = quantity
@@ -30,10 +30,10 @@ namespace StoreApp.Model.Entities
 			}
 		}
 		public void RemoveLine(Product product) =>
-			CardLines.RemoveAll(c => c.Product.Id == product.Id);
+			CartLines.RemoveAll(c => c.Product.Id == product.Id);
 		public decimal ComputeTotalValue() =>
-			CardLines.Sum(i => i.Product.Price * i.Quantity);
+			CartLines.Sum(i => i.Product.Price * i.Quantity);
 		public void Clear() =>
-			CardLines.Clear();
+			CartLines.Clear();
 	}
 }

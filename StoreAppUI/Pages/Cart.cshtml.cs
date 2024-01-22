@@ -5,14 +5,14 @@ using StoreApp.Model.Entities;
 
 namespace StoreAppUI.Pages
 {
-	public class CardModel : PageModel
+	public class CartModel : PageModel
 	{
 		private readonly IServiceManager _manager;
-		public CardModel(IServiceManager manager)
+		public CartModel(IServiceManager manager)
 		{
 			_manager = manager;
 		}
-		public Card Card { get; set; } //IoC
+		public Cart Cart { get; set; } //IoC
 		public string ReturnUrl { get; set; } = "/"; //user'ýn bu sayfaya hangi sayfadan eristiginin bilgisini tutalým.
 		public void OnGet(string returnUrl)
 		{
@@ -23,13 +23,13 @@ namespace StoreAppUI.Pages
 			Product? product = _manager.ProductService.GetOneProduct(Id, false);//update yapmadigimiz icin trackchanges false olabilir.
 			if (product is not null)
 			{
-				Card.AddItem(product, 1);
+				Cart.AddItem(product, 1);
 			}
 			return Page();//returnUrl
 		}
 		public IActionResult OnPostRemove(int Id, string returnUrl)
 		{
-			Card.RemoveLine(Card.CardLines.First(i => i.Product.Id.Equals(Id)).Product);
+			Cart.RemoveLine(Cart.CartLines.First(i => i.Product.Id.Equals(Id)).Product);
 			return Page();
 		}
 	}

@@ -7,6 +7,7 @@ using StoreApp.Business.ConcreteServices;
 using Microsoft.AspNetCore.Builder;
 using AutoMapper;
 using StoreApp.Business.Mapper;
+using StoreApp.Model.Entities;
 
 namespace StoreAppUI
 {
@@ -25,6 +26,7 @@ namespace StoreAppUI
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
 			builder.Services.AddRazorPages();//artik controllerlar olmadan razor pageleri kullanabiliriz.
+
 			#region Injections
 
 			builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
@@ -35,6 +37,9 @@ namespace StoreAppUI
 			builder.Services.AddScoped<IProductService, ProductService>();
 			builder.Services.AddScoped<ICategoryService, CategoryService>();
 
+			builder.Services.AddSingleton<Cart>();
+			//Cart'ý singleton yaparsak runtime'da sadece 1 adet instance uretilecek herkes bunu kullanacak ornegin user a 2 urun, user b 4 urun ekledi, 2si de 6 urun gorecek. Bunu istemeyiz
+		
 			#endregion
 
 			//builder.Services.AddAutoMapper(typeof(Program));//automapper eklendi

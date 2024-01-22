@@ -8,11 +8,12 @@ namespace StoreAppUI.Pages
 	public class CartModel : PageModel
 	{
 		private readonly IServiceManager _manager;
-		public CartModel(IServiceManager manager)
+		public Cart Cart { get; set; } //IoC
+		public CartModel(IServiceManager manager, Cart cart)
 		{
 			_manager = manager;
+			Cart = cart; //singleton nesnesi, inject islemi
 		}
-		public Cart Cart { get; set; } //IoC
 		public string ReturnUrl { get; set; } = "/"; //user'ýn bu sayfaya hangi sayfadan eristiginin bilgisini tutalým.
 		public void OnGet(string returnUrl)
 		{

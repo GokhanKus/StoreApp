@@ -18,7 +18,7 @@
 			<h5 class="card-title">@Model.ProductName</h5>
 			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 			<div class="btn btn-group">
-				<form id="@Model.Id" asp-page="/Card" method="post">
+				<form id="@Model.Id" asp-page="/Cart" method="post">@*cart.cshtml.cs sayfasindaki onpost metodu calisir.(asp-page-handler)*@
 					<input type="hidden" asp-for="Id" />
 					<input type="hidden" name="stringUrl" value="/Product/Get/@Model.Id" />
 					<button type="submit" class="btn btn-outline-primary">

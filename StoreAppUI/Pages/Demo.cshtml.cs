@@ -26,11 +26,3 @@ namespace StoreAppUI.Pages
 
 	}
 }
-
-/*Session (Oturum) (Middleware) arayazilimdir
-biz asp.net projelerinde  aslýnda http istekleri(requestleri) uzerine calisiyoruz, request ifadesi geliyor sonra sunucudan response ifadesi geliyor
-uygun istekleri ve cevaplarý uretmek uzerýne programlama yapiyoruz
-session bir middlewaredir ve istekler(requestler) ve yanýtlar(responseler) arasýnda iliski kurmaya izin veren bir yapý
-http stateless(durumsuzdur) yani bir requestten sonra tekrar bir request atarsak sunucu bizi hatýrlamak zorunda degil 
-eger hatýrlamasini istiyorsak request ve responseleri baglayacak bir yapiya ihtiyacimiz var o da sessionlardýr
-*/

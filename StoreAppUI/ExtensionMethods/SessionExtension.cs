@@ -14,7 +14,7 @@ namespace StoreAppUI.ExtensionMethods
 		{
 			session.SetString(key, JsonSerializer.Serialize(value));//object ile gelen value degerini cozumleyip (string'e cevirip -json formatina cevirip)veriyi sessionda hafızaya alıyoruz.
 		}
-		public static void SetObject<T>(this ISession session, string key, T value)
+		public static void SetJson<T>(this ISession session, string key, T value)
 		{
 			//ustteki metotla islevi aynidir bu sadece generic versiyonu bizden bir T tipi bekler.
 			session.SetString(key, JsonSerializer.Serialize(value));
@@ -41,4 +41,11 @@ namespace StoreAppUI.ExtensionMethods
 SetJson veya SetObject metodunu kullanırken ISession session parametresini dikkate almayız;
 o kısım hangi veri tipinin,nesnenin genisletildigine karsilik gelir ve burada genisletilen ifade extension yazılan ifade ISession ifadesidir.
 ISession yazmamızın sebebi HttpContext.Session kısmından sonra "." dedigimiz an ustteki metotlar gelir genisletmekten kasit budur.
+*/
+/*Session (Oturum) (Middleware) arayazilimdir. Session bilgiler tarayıcıya, kullaniciya ozeldir
+biz asp.net projelerinde  aslında http istekleri(requestleri) uzerine calisiyoruz, request ifadesi geliyor sonra sunucudan response ifadesi geliyor
+uygun istekleri ve cevapları uretmek uzerıne programlama yapiyoruz
+session bir middlewaredir ve istekler(requestler) ve yanıtlar(responseler) arasında iliski kurmaya izin veren bir yapı
+http stateless(durumsuzdur) yani bir requestten sonra tekrar bir request atarsak sunucu bizi hatırlamak zorunda degil 
+eger hatırlamasini istiyorsak request ve responseleri baglayacak bir yapiya ihtiyacimiz var o da sessionlardır
 */

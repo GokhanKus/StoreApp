@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using StoreAppUI.ExtensionMethods;
 
 namespace StoreAppUI.Pages
 {
@@ -19,7 +20,8 @@ namespace StoreAppUI.Pages
 			//FullName = name; o yuzden bu bilgiyi session uzerinde tutalým
 
 			HttpContext.Session.SetString("name",name);
-			//set isleminde kýsýtýmýz var byte[], int ve string tipinde veri tutabiliyoruz, eger class bilgisi tutmak istersen once serialize sonra deserialize islemi yapariz.
+			//set isleminde kýsýtýmýz var byte[], int ve string tipinde veri tutabiliyoruz,
+			//eger class bilgisi tutmak istersen once serialize sonra deserialize islemi yapariz. (bunun icin ExtensionMethod klasörü olusturduk)
 		}
 
 	}

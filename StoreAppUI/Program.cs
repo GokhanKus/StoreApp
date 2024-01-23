@@ -28,7 +28,21 @@ namespace StoreAppUI
 			builder.Services.AddRazorPages();//artik controllerlar olmadan razor pageleri kullanabiliriz.
 
 			builder.Services.AddDistributedMemoryCache();//onbellek ekler, session icin user bilgilerini ram'de saklamak ve paylasmak icin tercih edilebilir
-			builder.Services.AddSession(); //Oturum yönetimi, kullanýcýlarýn uygulama içindeki etkileþimleri sýrasýnda belirli bilgileri tutma ve paylaþma mekanizmasýdýr.
+			//Oturum yönetimi, kullanýcýlarýn uygulama içindeki etkileþimleri sýrasýnda belirli bilgileri tutma ve paylaþma mekanizmasýdýr.
+			builder.Services.AddSession(options =>
+			{
+				options.Cookie.Name = "StoreApp.Session";
+				options.IdleTimeout = TimeSpan.FromMinutes(10);//userdan 10 dk icerisinden fresh bir request gelmezse oturumu sonlandir.
+			});
+			//builder.Services.AddHttpContextAccessor();
+			builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+			#region HttpContextAccessor
+			/*
+			 * HttpContext nesnesine erisim saglar, bu nesne bir http requestin icerisinde barindirabilecegi cesitli bilgileri ve durumu temsil eder; 
+			 * userin browserdan gonderdigi veriler, oturum bilgileri, url talebi vs
+			 * HttpContextAccessor bu httpcontext nesnesine erisim saglar
+			 */
+			#endregion
 			#region Injections
 
 			builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
@@ -41,7 +55,7 @@ namespace StoreAppUI
 
 			builder.Services.AddSingleton<Cart>();
 			//Cart'ý singleton yaparsak runtime'da sadece 1 adet instance uretilecek herkes bunu kullanacak ornegin user a 2 urun, user b 4 urun ekledi, 2si de 6 urun gorecek. Bunu istemeyiz
-		
+
 			#endregion
 
 			//builder.Services.AddAutoMapper(typeof(Program));//automapper eklendi

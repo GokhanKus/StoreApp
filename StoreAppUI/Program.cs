@@ -27,6 +27,8 @@ namespace StoreAppUI
 			builder.Services.AddControllersWithViews();
 			builder.Services.AddRazorPages();//artik controllerlar olmadan razor pageleri kullanabiliriz.
 
+			builder.Services.AddDistributedMemoryCache();//onbellek ekler, session icin user bilgilerini ram'de saklamak ve paylasmak icin tercih edilebilir
+			builder.Services.AddSession(); //Oturum yönetimi, kullanýcýlarýn uygulama içindeki etkileþimleri sýrasýnda belirli bilgileri tutma ve paylaþma mekanizmasýdýr.
 			#region Injections
 
 			builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
@@ -52,7 +54,10 @@ namespace StoreAppUI
 			{
 				app.UseExceptionHandler("/Home/Error");
 			}
+
 			app.UseStaticFiles();
+
+			app.UseSession(); //sessionu aktif hale getirdik.
 
 			app.UseRouting();
 

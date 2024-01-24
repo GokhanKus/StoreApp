@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using AutoMapper;
 using StoreApp.Business.Mapper;
 using StoreApp.Model.Entities;
+using StoreAppUI.Models;
 
 namespace StoreAppUI
 {
@@ -53,7 +54,9 @@ namespace StoreAppUI
 			builder.Services.AddScoped<IProductService, ProductService>();
 			builder.Services.AddScoped<ICategoryService, CategoryService>();
 
-			builder.Services.AddScoped<Cart>();
+			builder.Services.AddScoped<Cart>(c=>SessionCart.GetCart(c));//urettigin class sessiondan gelecek? GetCart()metodu icinde islettigim logic dahilinde bana cart.cs ver?
+			//bana verecegin Cart.cs'i SessionCart.cs'teki GetCart() metodunun urettigi cart.cs'i ver.
+
 			//Cart'ý singleton yaparsak runtime'da sadece 1 adet instance uretilecek herkes bunu kullanacak ornegin user a 2 urun, user b 4 urun ekledi, 2si de 6 urun gorecek. Bunu istemeyiz
 			//o yuzden scoped olarak degistirelim ama bu kez de baska bir urun eklersek onceki urun kayboluyor cunku request basina newleme yapiliyor ve onceki nesne kayboluyor.
 			//cart.cshtml.cs OnGet() metoduna bak.

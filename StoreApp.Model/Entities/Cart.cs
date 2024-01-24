@@ -13,7 +13,7 @@ namespace StoreApp.Model.Entities
 		{
 			CartLines = new List<CartLine>();
 		}
-		public void AddItem(Product product, int quantity)//metot imzası ilerde virtual olabilir, cunku bu metodu ezebiliriz.
+		public virtual void AddItem(Product product, int quantity)//metot imzası ilerde virtual olabilir, cunku bu metodu ezebiliriz.
 		{
 			CartLine? line = CartLines.Where(c => c.Product.Id == product.Id).FirstOrDefault();
 			if (line is null)
@@ -29,11 +29,11 @@ namespace StoreApp.Model.Entities
 				line.Quantity += quantity;
 			}
 		}
-		public void RemoveLine(Product product) =>
+		public virtual void RemoveLine(Product product) =>
 			CartLines.RemoveAll(c => c.Product.Id == product.Id);
+		public virtual void Clear() => //virtual keywordu, bir sınıf devralındıgında bir metodun bir propun geçersiz kılınmasini, override edilmesini saglamak amaciyla kullanılir.
+			CartLines.Clear();
 		public decimal ComputeTotalValue() =>
 			CartLines.Sum(i => i.Product.Price * i.Quantity);
-		public void Clear() =>
-			CartLines.Clear();
 	}
 }

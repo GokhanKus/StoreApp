@@ -10,7 +10,8 @@ namespace StoreAppUI.ExtensionMethods
 		//class bilgilerini tutmak icin once serialize sonra deserialize islemi yapariz. bu sinifi bunun icin olusturduk ve extension metotlar, classlar genelde static olarak tanimlanir.
 		//ornek olmasi acisindan demo.cshtml.cs'te yaptigimiz ornegi dikkate alirsak orada yaptigimiz islemler icin burada metodunu olusturduk bu metot kullanilabilir.
 
-		public static void SetJson(this ISession session, string key, object value)
+		//this ISession session kısmını yazmazsak ISession'u genisletemeyiz yani bu metotlara erisim saglayamayiz(SessionCart.cs'te bu metotlar kullanildi.)
+		public static void SetJson(this ISession session, string key, object value) 
 		{
 			session.SetString(key, JsonSerializer.Serialize(value));//object ile gelen value degerini cozumleyip (string'e cevirip -json formatina cevirip)veriyi sessionda hafızaya alıyoruz.
 		}

@@ -12,22 +12,29 @@
 	</div>
 </div>
 
-<div>
-	<p>@Model.Price</p>
-	<p>@Model.CreatedTime</p>
+<div class="text-center">
+	<div>
+		<p>@Model.Price</p>
+		<p>@Model.CreatedTime</p>
 
-	<div class="btn-group">
-		<a class="btn btn-primary" asp-controller="Home" asp-action="Index">
-			<i class="fa-solid fa-house"></i>
-			Home
-		</a>
-		<a class="btn btn-outline-primary" asp-controller="Product" asp-action="Index">
-			<i class="fa-solid fa-list"></i>
-			Products
-		</a>
+		<div class="btn-group">
+			<a class="btn btn-primary" asp-controller="Home" asp-action="Index">
+				<i class="fa-solid fa-house"></i>
+				Home
+			</a>
+			<a class="btn btn-outline-primary" asp-controller="Product" asp-action="Index">
+				<i class="fa-solid fa-list"></i>
+				Products
+			</a>
+			<form id="@Model.Id" method="post" asp-page="/Cart">
+				<input type="hidden" asp-for="Id" />
+				<input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" /> @*continue shoppingten sonra user bir onceki sayfaya donecek yani bu sayfaya*@
+				<button class="btn btn-outline-primary" type="submit">
+					<i class="fa fa-cart-plus"></i>
+				</button>
+			</form>
+		</div>
 	</div>
-
-
 </div>
 
 @section Header {

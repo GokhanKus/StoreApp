@@ -34,7 +34,7 @@ namespace StoreAppUI.Pages
 				//HttpContext.Session.SetJson<Cart>("cart", Cart); //veriyi session'a yazmýs oluyoruz. boylelikle yeni urun eklerken onceki kaybolmayacak (gerek kalmayan satir)
 				//HttpContext.Session.SetJson("cart", Cart);
 			}
-			return Page();//returnUrl
+			return RedirectToPage(new {returnUrl = returnUrl});//user sepete urun ekledikten sonra alisverise devam et butonuna basinca bir onceki sayfaya yonlendirilsin(ExtensionMethods/HttpRequestExtension.cs bak)
 		}
 		public IActionResult OnPostRemove(int Id, string returnUrl)
 		{

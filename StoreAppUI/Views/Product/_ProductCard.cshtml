@@ -1,14 +1,5 @@
 ﻿@model Product
-
-@* <div>
-	<h3>@Model.ProductName</h3>
-	<p>@Model.Price.ToString("c")</p>
-	<p>@Model.CreatedTime</p>
-	<a class="btn btn-primary" asp-action="Get" asp-route-id="@Model.Id">
-		<i class="fa-solid fa-arrow-right"></i>
-		Details
-		</a>
-</div> *@
+@* @using StoreAppUI.ExtensionMethods;  viewimporta tanimlayalim.*@
 
 <div class="col-md-4 my-3 col-sm-6">
 	@*col-sm ekran boyutu kucukse row basına 2 urun getir md(medium ise row basına 3 tane getir vs.)*@
@@ -17,10 +8,10 @@
 		<div class="card-body">
 			<h5 class="card-title">@Model.ProductName</h5>
 			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			<div class="btn btn-group">
+			<div class="btn-group">
 				<form id="@Model.Id" asp-page="/Cart" method="post">@*cart.cshtml.cs sayfasindaki onpost metodu calisir.(asp-page-handler)*@
 					<input type="hidden" asp-for="Id" />
-					<input type="hidden" name="stringUrl" value="/Product/Get/@Model.Id" />
+					<input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" /> @*continue shoppingten sonra user bir onceki sayfaya donecek*@
 					<button type="submit" class="btn btn-outline-primary">
 						<i class="fa-solid fa-cart-plus"></i>
 					</button>

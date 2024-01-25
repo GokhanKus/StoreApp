@@ -1,0 +1,13 @@
+﻿@page
+
+<div class="text-center">
+	<h6 class="display-6">Thanks</h6>
+	<p>Thanks for placing order #@Id</p>
+	<p>We'll ship your goods as soon as possible'</p>
+	<a class="btn btn-primary" asp-controller="Home" asp-action="Index">Return to HomePage</a>
+</div>
+
+@functions {
+	[BindProperty(SupportsGet = true)]// model name veya model tipini bind(iliskilendirmek) edebilmek icin bu attribute yazilir.
+	public string? Id { get; set; }
+}

@@ -11,7 +11,7 @@ using StoreApp.DataAccess.Context;
 namespace StoreAppUI.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20240119095730_InitialCreate")]
+    [Migration("20240125124551_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -19,6 +19,30 @@ namespace StoreAppUI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
+
+            modelBuilder.Entity("StoreApp.Model.Entities.CartLine", b =>
+                {
+                    b.Property<int>("CartLineId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("CartLineId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartLine");
+                });
 
             modelBuilder.Entity("StoreApp.Model.Entities.Category", b =>
                 {
@@ -33,9 +57,6 @@ namespace StoreAppUI.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("ModifiedTime")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
@@ -45,16 +66,51 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 1,
                             CategoryName = "Book",
-                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 821, DateTimeKind.Local).AddTicks(9601),
-                            ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(7338)
                         },
                         new
                         {
                             Id = 2,
                             CategoryName = "Electronic",
-                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 821, DateTimeKind.Local).AddTicks(9604),
-                            ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(7341)
                         });
+                });
+
+            modelBuilder.Entity("StoreApp.Model.Entities.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("City")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("GiftWrap")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Line1")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Line2")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Line3")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Shipped")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("StoreApp.Model.Entities.Product", b =>
@@ -70,9 +126,6 @@ namespace StoreAppUI.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("ModifiedTime")
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Price")
@@ -96,9 +149,8 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 1,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 822, DateTimeKind.Local).AddTicks(1111),
+                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8742),
                             ImageUrl = "1.jpg",
-                            ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 30000m,
                             ProductName = "Laptop",
                             Summary = ""
@@ -107,9 +159,8 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 2,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 822, DateTimeKind.Local).AddTicks(1113),
+                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8745),
                             ImageUrl = "2.jpg",
-                            ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 1000m,
                             ProductName = "Keyboard",
                             Summary = ""
@@ -118,9 +169,8 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 3,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 822, DateTimeKind.Local).AddTicks(1188),
+                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8746),
                             ImageUrl = "3.jpg",
-                            ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 500m,
                             ProductName = "Mouse",
                             Summary = ""
@@ -129,9 +179,8 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 4,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 822, DateTimeKind.Local).AddTicks(1190),
+                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8748),
                             ImageUrl = "4.jpg",
-                            ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 5000m,
                             ProductName = "Monitor",
                             Summary = ""
@@ -140,9 +189,8 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 5,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 822, DateTimeKind.Local).AddTicks(1192),
+                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8750),
                             ImageUrl = "5.jpg",
-                            ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 1500m,
                             ProductName = "Deck",
                             Summary = ""
@@ -151,9 +199,8 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 6,
                             CategoryId = 1,
-                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 822, DateTimeKind.Local).AddTicks(1193),
+                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8751),
                             ImageUrl = "6.jpg",
-                            ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 165m,
                             ProductName = "Guns, Germs and Steel",
                             Summary = ""
@@ -162,13 +209,27 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 7,
                             CategoryId = 1,
-                            CreatedTime = new DateTime(2024, 1, 19, 12, 57, 29, 822, DateTimeKind.Local).AddTicks(1195),
+                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8753),
                             ImageUrl = "7.jpg",
-                            ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 45m,
                             ProductName = "1984",
                             Summary = ""
                         });
+                });
+
+            modelBuilder.Entity("StoreApp.Model.Entities.CartLine", b =>
+                {
+                    b.HasOne("StoreApp.Model.Entities.Order", null)
+                        .WithMany("Lines")
+                        .HasForeignKey("OrderId");
+
+                    b.HasOne("StoreApp.Model.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("StoreApp.Model.Entities.Product", b =>
@@ -183,6 +244,11 @@ namespace StoreAppUI.Migrations
             modelBuilder.Entity("StoreApp.Model.Entities.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("StoreApp.Model.Entities.Order", b =>
+                {
+                    b.Navigation("Lines");
                 });
 #pragma warning restore 612, 618
         }

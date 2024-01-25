@@ -13,16 +13,18 @@ namespace StoreApp.DataAccess.ConcreteRepos
 		private readonly StoreContext _context;
 		private readonly ICategoryRepository _categoryRepository;
 		private readonly IProductRepository _productRepository;
-		public RepositoryManager(IProductRepository productRepository, StoreContext context, ICategoryRepository categoryRepository)
+		private readonly IOrderRepository _orderRepository;
+		public RepositoryManager(IProductRepository productRepository, StoreContext context, ICategoryRepository categoryRepository, IOrderRepository orderRepository)
 		{
 			_context = context;
 			_productRepository = productRepository;
 			_categoryRepository = categoryRepository;
+			_orderRepository = orderRepository;
 		}
 
 		public IProductRepository Product => _productRepository;
-
 		public ICategoryRepository Category => _categoryRepository;
+		public IOrderRepository Order => _orderRepository;
 
 		public void Save()
 		{

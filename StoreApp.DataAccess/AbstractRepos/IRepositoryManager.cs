@@ -10,6 +10,7 @@ namespace StoreApp.DataAccess.AbstractRepos
 	{
 		IProductRepository Product { get; }
 		ICategoryRepository Category { get; }
+		IOrderRepository Order{ get; }
 		public void Save();
 	}
 }

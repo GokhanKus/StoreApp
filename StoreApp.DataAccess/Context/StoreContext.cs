@@ -14,6 +14,8 @@ namespace StoreApp.DataAccess.Context
 	{
 		public DbSet<Product> Products { get; set; }
 		public DbSet<Category> Categories { get; set; }
+		public DbSet<Order> Orders { get; set; }
+		//public DbSet<Order> Orders => Set<Order>();
 		public StoreContext(DbContextOptions<StoreContext> options) : base(options)
 		{
 			//default olan ctor yerine bunu yazdık ve

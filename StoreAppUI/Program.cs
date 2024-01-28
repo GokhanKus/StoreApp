@@ -8,17 +8,15 @@ namespace StoreAppUI
 		public static void Main(string[] args)
 		{
 			var builder = WebApplication.CreateBuilder(args);
-
-			builder.Services.ConfigureDbContext(builder.Configuration);  //ServiceExtension.cs'te konfigurasyon ayarini yaptik (onceden burada tanimlanirdi.)
-
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
-			builder.Services.AddRazorPages();//artik controllerlar olmadan razor pageleri kullanabiliriz.
 
-			builder.Services.ConfigureSession();//program.csteki session configure ayarlarini ServiceExtension.cs'te yaptik.
-
-			builder.Services.ConfigureRepositoryInjections();   //ServiceExtension.cs'a tasindi
-			builder.Services.ConfigureServiceInjections();      //ServiceExtension.cs'a tasindi
+			builder.Services.AddRazorPages();							//artik controllerlar olmadan razor pageleri kullanabiliriz.
+			builder.Services.ConfigureDbContext(builder.Configuration);	//ServiceExtension.cs'te konfigurasyon ayarini yaptik (onceden burada tanimlanirdi.)
+			builder.Services.ConfigureSession();					    //program.csteki session configure ayarlarini ServiceExtension.cs'te yaptik.
+			builder.Services.ConfigureRepositoryInjections();			//ServiceExtension.cs'a tasindi
+			builder.Services.ConfigureServiceInjections();              //ServiceExtension.cs'a tasindi
+			builder.Services.ConfigureRouting();
 
 			//builder.Services.AddAutoMapper(typeof(Program));//automapper eklendi
 			builder.Services.AddAutoMapper(typeof(MappingProfile)); // MappingProfile'ý ekleyin

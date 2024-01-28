@@ -36,10 +36,10 @@ namespace StoreAppUI.ExtensionMethods
 			 */
 			#endregion
 			services.AddScoped<Cart>(c => SessionCart.GetCart(c));//urettigin class sessiondan gelecek? GetCart()metodu icinde islettigim logic dahilinde bana cart.cs ver?
-			//bana verecegin Cart.cs'i SessionCart.cs'teki GetCart() metodunun urettigi cart.cs'i ver.
-			//Cart'ı singleton yaparsak runtime'da sadece 1 adet instance uretilecek herkes bunu kullanacak ornegin user a 2 urun, user b 4 urun ekledi, 2si de 6 urun gorecek. Bunu istemeyiz
-			//o yuzden scoped olarak degistirelim ama bu kez de baska bir urun eklersek onceki urun kayboluyor cunku request basina newleme yapiliyor ve onceki nesne kayboluyor.
-			//cart.cshtml.cs OnGet() metoduna bak.
+																  //bana verecegin Cart.cs'i SessionCart.cs'teki GetCart() metodunun urettigi cart.cs'i ver.
+																  //Cart'ı singleton yaparsak runtime'da sadece 1 adet instance uretilecek herkes bunu kullanacak ornegin user a 2 urun, user b 4 urun ekledi, 2si de 6 urun gorecek. Bunu istemeyiz
+																  //o yuzden scoped olarak degistirelim ama bu kez de baska bir urun eklersek onceki urun kayboluyor cunku request basina newleme yapiliyor ve onceki nesne kayboluyor.
+																  //cart.cshtml.cs OnGet() metoduna bak.
 		}
 		public static void ConfigureRepositoryInjections(this IServiceCollection services)
 		{
@@ -54,6 +54,14 @@ namespace StoreAppUI.ExtensionMethods
 			services.AddScoped<IProductService, ProductService>();
 			services.AddScoped<ICategoryService, CategoryService>();
 			services.AddScoped<IOrderService, OrderService>();
+		}
+		public static void ConfigureRouting(this IServiceCollection services)
+		{
+			services.AddRouting(options =>
+			{
+				options.LowercaseUrls = true; //urldeki action, controller vs buyuk harfle basliyordu baslamasini istemiyoruz. orn: output localhost/product/get olacak
+				options.AppendTrailingSlash = false; //tue yapilirsa endpointin sonuna "/" koyar
+			});
 		}
 	}
 }

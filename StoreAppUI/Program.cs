@@ -62,6 +62,7 @@ namespace StoreAppUI
 			});
 
 			app.ConfigureAndCheckMigration();
+			app.ConfigureLocalization();
 
 			app.Run();
 		}

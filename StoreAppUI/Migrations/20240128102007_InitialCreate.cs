@@ -58,6 +58,7 @@ namespace StoreAppUI.Migrations
                     Summary = table.Column<string>(type: "TEXT", nullable: true),
                     ImageUrl = table.Column<string>(type: "TEXT", nullable: true),
                     CategoryId = table.Column<int>(type: "INTEGER", nullable: true),
+                    ShowCase = table.Column<bool>(type: "INTEGER", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -101,22 +102,25 @@ namespace StoreAppUI.Migrations
                 columns: new[] { "Id", "CategoryName", "CreatedTime" },
                 values: new object[,]
                 {
-                    { 1, "Book", new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(7338) },
-                    { 2, "Electronic", new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(7341) }
+                    { 1, "Book", new DateTime(2024, 1, 28, 13, 20, 7, 54, DateTimeKind.Local).AddTicks(9017) },
+                    { 2, "Electronic", new DateTime(2024, 1, 28, 13, 20, 7, 54, DateTimeKind.Local).AddTicks(9020) }
                 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "CategoryId", "CreatedTime", "ImageUrl", "Price", "ProductName", "Summary" },
+                columns: new[] { "Id", "CategoryId", "CreatedTime", "ImageUrl", "Price", "ProductName", "ShowCase", "Summary" },
                 values: new object[,]
                 {
-                    { 1, 2, new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8742), "1.jpg", 30000m, "Laptop", "" },
-                    { 2, 2, new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8745), "2.jpg", 1000m, "Keyboard", "" },
-                    { 3, 2, new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8746), "3.jpg", 500m, "Mouse", "" },
-                    { 4, 2, new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8748), "4.jpg", 5000m, "Monitor", "" },
-                    { 5, 2, new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8750), "5.jpg", 1500m, "Deck", "" },
-                    { 6, 1, new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8751), "6.jpg", 165m, "Guns, Germs and Steel", "" },
-                    { 7, 1, new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8753), "7.jpg", 45m, "1984", "" }
+                    { 1, 2, new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(458), "1.jpg", 30000m, "Laptop", false, "" },
+                    { 2, 2, new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(461), "2.jpg", 1000m, "Keyboard", false, "" },
+                    { 3, 2, new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(464), "3.jpg", 500m, "Mouse", false, "" },
+                    { 4, 2, new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(516), "4.jpg", 5000m, "Monitor", false, "" },
+                    { 5, 2, new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(518), "5.jpg", 1500m, "Deck", false, "" },
+                    { 6, 1, new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(520), "6.jpg", 165m, "Guns, Germs and Steel", false, "" },
+                    { 7, 1, new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(522), "7.jpg", 45m, "1984", false, "" },
+                    { 8, 2, new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(524), "8.jpg", 450m, "Xp-Pen", true, "" },
+                    { 9, 2, new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(526), "9.jpg", 15000m, "Galaxy FE", true, "" },
+                    { 10, 2, new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(528), "10.jpg", 400m, "Hp Mouse", true, "" }
                 });
 
             migrationBuilder.CreateIndex(

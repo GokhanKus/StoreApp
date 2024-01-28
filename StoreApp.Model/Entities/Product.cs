@@ -16,6 +16,7 @@ namespace StoreApp.Model.Entities
         public string? ImageUrl { get; set; }
         public int? CategoryId { get; set; }     //Foreign Key
         public Category? Category { get; set; } //Navigation Property
+        public bool ShowCase { get; set; } //vitrin (anasayfada gostermek istedigimiz prroductlar..)
     }
 }
 //ilerleyen asamalarda validasyon islemlerini baska yerde yapacagiz bu classın sorumlulugu sadece entityleri (varlıklari)temsil etmektedir

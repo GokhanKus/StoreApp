@@ -11,7 +11,7 @@ using StoreApp.DataAccess.Context;
 namespace StoreAppUI.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20240125124551_InitialCreate")]
+    [Migration("20240128102007_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -66,13 +66,13 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 1,
                             CategoryName = "Book",
-                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(7338)
+                            CreatedTime = new DateTime(2024, 1, 28, 13, 20, 7, 54, DateTimeKind.Local).AddTicks(9017)
                         },
                         new
                         {
                             Id = 2,
                             CategoryName = "Electronic",
-                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(7341)
+                            CreatedTime = new DateTime(2024, 1, 28, 13, 20, 7, 54, DateTimeKind.Local).AddTicks(9020)
                         });
                 });
 
@@ -135,6 +135,9 @@ namespace StoreAppUI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("ShowCase")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Summary")
                         .HasColumnType("TEXT");
 
@@ -149,70 +152,110 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 1,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8742),
+                            CreatedTime = new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(458),
                             ImageUrl = "1.jpg",
                             Price = 30000m,
                             ProductName = "Laptop",
+                            ShowCase = false,
                             Summary = ""
                         },
                         new
                         {
                             Id = 2,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8745),
+                            CreatedTime = new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(461),
                             ImageUrl = "2.jpg",
                             Price = 1000m,
                             ProductName = "Keyboard",
+                            ShowCase = false,
                             Summary = ""
                         },
                         new
                         {
                             Id = 3,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8746),
+                            CreatedTime = new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(464),
                             ImageUrl = "3.jpg",
                             Price = 500m,
                             ProductName = "Mouse",
+                            ShowCase = false,
                             Summary = ""
                         },
                         new
                         {
                             Id = 4,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8748),
+                            CreatedTime = new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(516),
                             ImageUrl = "4.jpg",
                             Price = 5000m,
                             ProductName = "Monitor",
+                            ShowCase = false,
                             Summary = ""
                         },
                         new
                         {
                             Id = 5,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8750),
+                            CreatedTime = new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(518),
                             ImageUrl = "5.jpg",
                             Price = 1500m,
                             ProductName = "Deck",
+                            ShowCase = false,
                             Summary = ""
                         },
                         new
                         {
                             Id = 6,
                             CategoryId = 1,
-                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8751),
+                            CreatedTime = new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(520),
                             ImageUrl = "6.jpg",
                             Price = 165m,
                             ProductName = "Guns, Germs and Steel",
+                            ShowCase = false,
                             Summary = ""
                         },
                         new
                         {
                             Id = 7,
                             CategoryId = 1,
-                            CreatedTime = new DateTime(2024, 1, 25, 15, 45, 50, 433, DateTimeKind.Local).AddTicks(8753),
+                            CreatedTime = new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(522),
                             ImageUrl = "7.jpg",
                             Price = 45m,
                             ProductName = "1984",
+                            ShowCase = false,
+                            Summary = ""
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 2,
+                            CreatedTime = new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(524),
+                            ImageUrl = "8.jpg",
+                            Price = 450m,
+                            ProductName = "Xp-Pen",
+                            ShowCase = true,
+                            Summary = ""
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 2,
+                            CreatedTime = new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(526),
+                            ImageUrl = "9.jpg",
+                            Price = 15000m,
+                            ProductName = "Galaxy FE",
+                            ShowCase = true,
+                            Summary = ""
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryId = 2,
+                            CreatedTime = new DateTime(2024, 1, 28, 13, 20, 7, 55, DateTimeKind.Local).AddTicks(528),
+                            ImageUrl = "10.jpg",
+                            Price = 400m,
+                            ProductName = "Hp Mouse",
+                            ShowCase = true,
                             Summary = ""
                         });
                 });

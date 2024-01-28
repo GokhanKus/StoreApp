@@ -39,6 +39,17 @@ namespace StoreAppUI
 
 			app.UseAuthorization();
 
+			/*Area'lar kucuk mvc projeleri olarak dusunulebilir.
+
+			app.MapAreaControllerRoute(
+				name: "Admin",
+				areaName: "Admin",
+				pattern: "Admin/{controller=DashBoard}/{action=Index}/{id?}");
+
+			app.MapControllerRoute(
+				name: "default",
+				pattern: "{controller=Home}/{action=Index}/{id?}");
+			*/
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapAreaControllerRoute(
@@ -49,16 +60,8 @@ namespace StoreAppUI
 				endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 				endpoints.MapRazorPages(); //routing mekanizmasýnda bir problem yasamamamak icin ve endpointlerin uyusmasi icin bu satiri yazdýk.
 			});
-			//Area'lar kucuk mvc projeleri olarak dusunulebilir.
 
-			//app.MapAreaControllerRoute(
-			//	name: "Admin",
-			//	areaName: "Admin",
-			//	pattern: "Admin/{controller=DashBoard}/{action=Index}/{id?}");
-
-			//app.MapControllerRoute(
-			//	name: "default",
-			//	pattern: "{controller=Home}/{action=Index}/{id?}");
+			app.ConfigureAndCheckMigration();
 
 			app.Run();
 		}

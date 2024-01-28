@@ -10,9 +10,10 @@ namespace StoreApp.Business.AbstractServices
 {
 	public interface IProductService
 	{
-		public IEnumerable<Product> GetAllProducts(bool trackChanges);
-		public Product? GetOneProduct(int id, bool trackChanges);
-		public void CreateProduct(ProductDtoForInsertion productDto);
+		IEnumerable<Product> GetAllProducts(bool trackChanges);
+		IEnumerable<Product> GetShowCaseProducts(bool trackChanges);
+		Product? GetOneProduct(int id, bool trackChanges);
+		void CreateProduct(ProductDtoForInsertion productDto);
 		void UpdateOneProduct(ProductDtoForUpdate productDto);
 		void DeleteOneProduct(int id);
 		ProductDtoForUpdate GetOneProductForUpdate(int id, bool trackChanges);

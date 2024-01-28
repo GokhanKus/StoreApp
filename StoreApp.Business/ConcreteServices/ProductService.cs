@@ -54,6 +54,11 @@ namespace StoreApp.Business.ConcreteServices
 		{
 			return _manager.Product.GetAllProducts(trackChanges);
 		}
+		public IEnumerable<Product> GetShowCaseProducts(bool trackChanges)
+		{
+			var products = _manager.Product.GetShowCaseProducts(trackChanges);
+			return products;  
+		}
 
 		public Product? GetOneProduct(int id, bool trackChanges)
 		{
@@ -71,6 +76,7 @@ namespace StoreApp.Business.ConcreteServices
 			var productDto = _mapper.Map<ProductDtoForUpdate>(product);
 			return productDto;
 		}
+
 
 		public void UpdateOneProduct(ProductDtoForUpdate productDto)
 		{

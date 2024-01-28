@@ -1,0 +1,36 @@
+﻿@model Product
+@* @using StoreAppUI.ExtensionMethods;  viewimporta tanimlayalim.*@
+
+<div class="col-md-4 my-3 col-sm-6">
+	@*col-sm ekran boyutu kucukse row basına 2 urun getir md(medium ise row basına 3 tane getir vs.)*@
+	<div class="card" style="width: 18rem;">
+		<div class="card-header text-center">
+			<h5 class="card-title">@Model.ProductName</h5>
+		</div>
+		<img src="/img/@Model.ImageUrl?" class="card-img-top" alt="...">
+		<div class="card-body">
+			<div class="card-text">
+				<div class="text-danger text-center lead p-2 rounded-2">
+					@Model?.Price.ToString("c2")
+				</div>
+			</div>
+			<p class="card-text">@Model?.Summary</p>
+			<div class="d-flex justify-content-center">
+				<div class="btn-group">
+					<form id="@Model.Id" asp-page="/Cart" method="post">
+						@*cart.cshtml.cs sayfasindaki onpost metodu calisir.(asp-page-handler)*@
+						<input type="hidden" asp-for="Id" />
+						<input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" /> @*continue shoppingten sonra user bir onceki sayfaya donecek*@
+						<button type="submit" class="btn btn-sm btn-outline-secondary mx-1">
+							<i class="fa-solid fa-cart-plus"></i>
+						</button>
+					</form>
+					<a asp-controller="Product" asp-action="Get" asp-route-id="@Model.Id" class="btn btn-sm btn-outline-secondary rounded-2">
+						<i class="fa-solid fa-arrow-right"></i>
+						Details
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

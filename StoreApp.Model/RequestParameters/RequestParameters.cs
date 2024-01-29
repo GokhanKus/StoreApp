@@ -8,6 +8,7 @@ namespace StoreApp.Model.RequestParameters
 {
 	public abstract class RequestParameters
 	{
-		//buraya ortak olabilecek parametreler tanimlanacak, abstract oldugu icin newlenemez, bu sinifi kalitim alacak class newleyebilir
+        //buraya ortak olabilecek parametreler tanimlanacak, abstract oldugu icin newlenemez, bu sinifi kalitim alacak class newleyebilir
+        public string? SearchingTerm { get; set; }
     }
 }

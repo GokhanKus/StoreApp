@@ -33,7 +33,9 @@ namespace StoreApp.DataAccess.ConcreteRepos
 
 		public IQueryable<Product> GetAllProductsWithDetails(ProductRequestParameters p)
 		{
-			return _context.Products.FilteredByCategoryId(p.CategoryId);
+			return _context.Products
+				.FilteredByCategoryId(p.CategoryId)
+				.FilteredBySearchingTerm(p.SearchingTerm);
 		}
 	}
 }

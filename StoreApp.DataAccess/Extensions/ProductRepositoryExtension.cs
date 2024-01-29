@@ -18,5 +18,12 @@ namespace StoreApp.DataAccess.Extensions
 			else
 				return products.Where(p => p.CategoryId.Equals(categoryId));
 		}
+		public static IQueryable<Product> FilteredBySearchingTerm(this IQueryable<Product> products, string? SearchingTerm)
+		{
+			if (string.IsNullOrWhiteSpace(SearchingTerm))
+				return products;
+			else
+				return products.Where(p => p.ProductName.ToLower().Contains(SearchingTerm.ToLower()));
+		}
 	}
 }

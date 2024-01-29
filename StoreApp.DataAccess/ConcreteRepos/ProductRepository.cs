@@ -1,9 +1,12 @@
-﻿using StoreApp.DataAccess.AbstractRepos;
+﻿using Microsoft.EntityFrameworkCore;
+using StoreApp.DataAccess.AbstractRepos;
 using StoreApp.DataAccess.Context;
 using StoreApp.Model.Entities;
+using StoreApp.Model.RequestParameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,11 +22,23 @@ namespace StoreApp.DataAccess.ConcreteRepos
 		public void DeleteOneProduct(Product product) => Remove(product);
 		public void UpdateOneProduct(Product entity) => Update(entity);
 		public IQueryable<Product> GetAllProducts(bool trackChanges) => FindAll(trackChanges);
-		public IQueryable<Product> GetShowCaseProducts(bool trackChanges) => FindAll(trackChanges).Where(p => p.ShowCase.Equals(true));
+		public IQueryable<Product> GetShowCaseProducts(bool trackChanges) => FindAll(trackChanges).Where(p => p.ShowCase.Equals(true)); 
 		public Product? GetOneProduct(int id, bool trackChanges)
 		{
 			//return FindByCondition(p => p.Id == id, false);alttakiyle aynı
 			return FindByCondition(p => p.Id.Equals(id), trackChanges);
+		}
+
+		public IQueryable<Product> GetAllProductsWithDetails(ProductRequestParameters p)
+		{
+			return p.CategoryId is null ?
+				_context
+				.Products
+				.Include(prd => prd.Category)
+			: _context
+				.Products
+				.Include(prd => prd.Category)
+				.Where(prd => prd.CategoryId.Equals(p.CategoryId));
 		}
 	}
 }

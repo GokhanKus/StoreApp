@@ -1,5 +1,6 @@
 ﻿using StoreApp.Model.DTOs;
 using StoreApp.Model.Entities;
+using StoreApp.Model.RequestParameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace StoreApp.Business.AbstractServices
 	{
 		IEnumerable<Product> GetAllProducts(bool trackChanges);
 		IEnumerable<Product> GetShowCaseProducts(bool trackChanges);
+		IEnumerable<Product> GetAllProductsWithDetails(ProductRequestParameters p);
 		Product? GetOneProduct(int id, bool trackChanges);
 		void CreateProduct(ProductDtoForInsertion productDto);
 		void UpdateOneProduct(ProductDtoForUpdate productDto);

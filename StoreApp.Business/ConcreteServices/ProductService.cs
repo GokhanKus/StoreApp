@@ -3,6 +3,7 @@ using StoreApp.Business.AbstractServices;
 using StoreApp.DataAccess.AbstractRepos;
 using StoreApp.Model.DTOs;
 using StoreApp.Model.Entities;
+using StoreApp.Model.RequestParameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -95,6 +96,11 @@ namespace StoreApp.Business.ConcreteServices
 			var entity = _mapper.Map<Product>(productDto);
 			_manager.Product.UpdateOneProduct(entity); 
 			_manager.Save();
+		}
+
+		public IEnumerable<Product> GetAllProductsWithDetails(ProductRequestParameters p)
+		{
+			return _manager.Product.GetAllProductsWithDetails(p);
 		}
 	}
 }

@@ -25,5 +25,12 @@ namespace StoreApp.DataAccess.Extensions
 			else
 				return products.Where(p => p.ProductName.ToLower().Contains(SearchingTerm.ToLower()));
 		}
+		public static IQueryable<Product> FilteredByPrice(this IQueryable<Product> products, int MinPrice, int MaxPrice, bool isValidPrice)
+		{
+			if (isValidPrice)
+				return products.Where(p => p.Price >= MinPrice && p.Price <= MaxPrice);
+			else
+				return products;
+		}
 	}
 }

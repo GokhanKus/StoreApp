@@ -35,7 +35,8 @@ namespace StoreApp.DataAccess.ConcreteRepos
 		{
 			return _context.Products
 				.FilteredByCategoryId(p.CategoryId)
-				.FilteredBySearchingTerm(p.SearchingTerm);
+				.FilteredBySearchingTerm(p.SearchingTerm)
+				.FilteredByPrice(p.MinPrice, p.MaxPrice, p.IsValidPrice);
 		}
 	}
 }

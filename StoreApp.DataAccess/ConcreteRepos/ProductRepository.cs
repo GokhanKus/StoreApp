@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StoreApp.DataAccess.AbstractRepos;
 using StoreApp.DataAccess.Context;
+using StoreApp.DataAccess.Extensions;
 using StoreApp.Model.Entities;
 using StoreApp.Model.RequestParameters;
 using System;
@@ -12,7 +13,8 @@ using System.Threading.Tasks;
 
 namespace StoreApp.DataAccess.ConcreteRepos
 {
-	public class ProductRepository : RepositoryBase<Product>, IProductRepository
+	//sealed: bu classin bir daha devralinamayacagini belirtiri bu classin son versiyonudur inherit edilmesi artik mumkun degildir.
+	public sealed class ProductRepository : RepositoryBase<Product>, IProductRepository
 	{
 		public ProductRepository(StoreContext context) : base(context) //repositoryBase'in context'ini kullanalaım (ve o context de inject islemi ile db ile iletisimi saglacayacak.)
 		{
@@ -31,14 +33,7 @@ namespace StoreApp.DataAccess.ConcreteRepos
 
 		public IQueryable<Product> GetAllProductsWithDetails(ProductRequestParameters p)
 		{
-			return p.CategoryId is null ?
-				_context
-				.Products
-				.Include(prd => prd.Category)
-			: _context
-				.Products
-				.Include(prd => prd.Category)
-				.Where(prd => prd.CategoryId.Equals(p.CategoryId));
+			return _context.Products.FilteredByCategoryId(p.CategoryId);
 		}
 	}
 }

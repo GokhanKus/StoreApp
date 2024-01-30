@@ -102,5 +102,13 @@ namespace StoreApp.Business.ConcreteServices
 		{
 			return _manager.Product.GetAllProductsWithDetails(p);
 		}
+
+		public IEnumerable<Product> GetLastestProducts(int n, bool trackChanges)
+		{
+			//return _manager.Product.GetAllProducts(trackChanges).TakeLast(n);
+			//return _manager.Product.FindAll(trackChanges).TakeLast(n);
+			//return _manager.Product.GetAllProducts(trackChanges).OrderByDescending(p=>p.Id).Take(n);
+			return _manager.Product.FindAll(trackChanges).OrderByDescending(p=>p.Id).Take(n);
+		}
 	}
 }

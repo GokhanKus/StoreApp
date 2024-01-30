@@ -22,9 +22,11 @@ namespace StoreAppUI.TagHelpers
 			//_Footer.cshtml'e bak
 			TagBuilder div = new TagBuilder("div"); //bu satirlar <div class="my-3"></div>' a karsilik gelmektedir.
 			div.Attributes.Add("class", "my-3");
+			//div.Attributes["class"] = "my-3"; usttekinin aynisi (farkli kullanim)
 
 			TagBuilder h6 = new TagBuilder("h6");
 			h6.Attributes.Add("class", "lead");
+			//h6.Attributes["class"] = "lead";
 
 			TagBuilder icon = new TagBuilder("i");
 			icon.Attributes.Add("class", "fa fa-box text-secondary");

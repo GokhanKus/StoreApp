@@ -10,9 +10,10 @@ namespace StoreAppUI
 			var builder = WebApplication.CreateBuilder(args);
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
-
 			builder.Services.AddRazorPages();							//artik controllerlar olmadan razor pageleri kullanabiliriz.
-			builder.Services.ConfigureDbContext(builder.Configuration);	//ServiceExtension.cs'te konfigurasyon ayarini yaptik (onceden burada tanimlanirdi.)
+
+			builder.Services.ConfigureDbContext(builder.Configuration); //ServiceExtension.cs'te konfigurasyon ayarini yaptik (onceden burada tanimlanirdi.)
+			builder.Services.ConfigureIdentityDbContext();              //ServiceExtension.cs'te Identity configuration ayarlarini yaptik.
 			builder.Services.ConfigureSession();					    //program.csteki session configure ayarlarini ServiceExtension.cs'te yaptik.
 			builder.Services.ConfigureRepositoryInjections();			//ServiceExtension.cs'a tasindi
 			builder.Services.ConfigureServiceInjections();              //ServiceExtension.cs'a tasindi

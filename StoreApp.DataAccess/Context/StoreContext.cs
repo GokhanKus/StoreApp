@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using StoreApp.DataAccess.Config;
 using StoreApp.Model.Entities;
 using System;
@@ -10,7 +12,10 @@ using System.Threading.Tasks;
 
 namespace StoreApp.DataAccess.Context
 {
-	public class StoreContext : DbContext
+	//onceden DbContext'den kalitim aliyorduk, artik identity islemleri yapacagimiz icin IdentityDbContext'den kalitim aldik bu sayede user role gibi tablelar default olarak gelecek
+	//isteseydik IdentityDbContext<IdentityUser> bu ifadeyi farklı bir context sınıfında tanimlayip 2 farklı database uzerinde ilerleyebilirdik ama maliyetli olurdu
+	//o yuzden tek db uzerinden yuruyelim
+	public class StoreContext : IdentityDbContext<IdentityUser> 
 	{
 		public DbSet<Product> Products { get; set; }
 		public DbSet<Category> Categories { get; set; }
@@ -23,7 +28,16 @@ namespace StoreApp.DataAccess.Context
 		}
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			//base.OnModelCreating(modelBuilder);
+			base.OnModelCreating(modelBuilder);
+			#region Migration hatasi
+			/*
+			IdentityDbContext'ten kalitim aldiktan sonra migration alirken;
+			"Unable to create a 'DbContext' of type ''.The exception 'The entity type 'IdentityUserLogin<string>' requires a primary key to be defined.
+			If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'." 
+			hatasi aliyorduk base.OnModelCreating(modelBuilder); yazinca duzeldi.
+			*/
+			#endregion
+
 			//modelBuilder.ApplyConfiguration(new ProductConfig());  hazirladigimiz config(seeding) classlarını bu sekilde cagirabiiriz (1.yol)
 			//modelBuilder.ApplyConfiguration(new CategoryConfig()); 
 

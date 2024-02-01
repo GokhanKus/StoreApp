@@ -36,7 +36,8 @@ namespace StoreAppUI
 
 			app.UseRouting();
 
-			app.UseAuthorization();
+			app.UseAuthorization(); //bu iki middleware Routing() ile EndPoints() arasýnda olmali
+			app.UseAuthentication();
 
 			/*Area'lar kucuk mvc projeleri olarak dusunulebilir.
 

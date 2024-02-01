@@ -10,11 +10,12 @@ namespace StoreAppUI.IdentityModels
 		[Required(ErrorMessage = "Password field is required")]
 		public string? Password{ get; set; }
 
-        private string? _returnUrl;
-        public string ReturnUrl //kapsulleme
-        {
-            get { return _returnUrl ?? "/"; }
-            set { _returnUrl = value; }
-        }
+        //private string? _returnUrl;
+        //public string ReturnUrl //kapsulleme
+        //{
+        //    get { return _returnUrl ?? "/"; }
+        //    set { _returnUrl = value; } //ReturnUrl'e atanan degeri value araciligiyla _returnUrl'e atayalim
+        //}
+        public string? ReturnUrl { get; set; } = "/";
     }
 }

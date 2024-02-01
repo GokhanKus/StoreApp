@@ -33,6 +33,7 @@ namespace StoreAppUI.ExtensionMethods
 				options.Password.RequireUppercase = false;
 				options.Password.RequireLowercase = false;
 				options.Password.RequireDigit = false;
+				options.Password.RequireNonAlphanumeric = false; //& % + gibi karakterler zorunlu olmasin
 				options.Password.RequiredLength = 6; // min 6 karakter
 			})
 			.AddEntityFrameworkStores<StoreContext>();

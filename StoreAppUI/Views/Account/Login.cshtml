@@ -1,6 +1,6 @@
 ﻿@model LoginModel
 
-<div class="text-center my-7">
+<div class="text-center my-4">
 	<h6 class="display-6">
 		<i class="fa-solid text-white fa-right-to-bracket bg-secondary p-3 rounded-5"></i>
 		<br />
@@ -18,13 +18,13 @@
 			</div>
 			<input type="hidden" asp-for="ReturnUrl" />
 			<div class="form-group my-3">
-				<label asp-for="Name"></label>
-				<input class="form-control" asp-for="Name" />
+				<label asp-for="UserName"></label>
+				<input class="form-control" asp-for="UserName" />
 			</div>
 
 			<div class="form-group my-3">
 				<label asp-for="Password"></label>
-				<input type="password" class="form-control" asp-for="Password" />
+				<input class="form-control" asp-for="Password" />
 			</div>
 
 			<div class="form-group my-3 d-flex justify-content-center">
@@ -34,6 +34,9 @@
 				</button>
 			</div>
 		</form>
+		<div>
+			If you do not have any account, please click here to sign up => <a class="btn btn-primary btn-sm" asp-action="Register">Registration Page</a>
+		</div>
 	</div>
 	<div class="col-md-3">
 	</div>

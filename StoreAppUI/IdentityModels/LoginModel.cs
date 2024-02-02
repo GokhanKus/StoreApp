@@ -5,9 +5,10 @@ namespace StoreAppUI.IdentityModels
     public class LoginModel
     {
         [Required(ErrorMessage = "Name field is required")]
-        public string? Name{ get; set; }
+        public string? UserName{ get; set; }
 
 		[Required(ErrorMessage = "Password field is required")]
+        [DataType(DataType.Password)]
 		public string? Password{ get; set; }
 
         //private string? _returnUrl;

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using StoreApp.Model.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace StoreApp.Business.AbstractServices
 	{
 		IEnumerable<IdentityRole> Roles { get; }
 		IEnumerable<IdentityUser> GetAllUsers();
+		Task<IdentityResult> CreateUserAsync(UserDtoForCreation userDto);
 	}
 }
  

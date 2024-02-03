@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using StoreApp.Model.DTOs;
 using StoreApp.Model.Entities;
 using System;
@@ -14,9 +15,8 @@ namespace StoreApp.Business.Mapper
 		public MappingProfile()
 		{
 			CreateMap<ProductDtoForInsertion, Product>(); //dtodan product'a veriler maplenecek
-
 			CreateMap<ProductDtoForUpdate, Product>().ReverseMap();
-			
+			CreateMap<UserDtoForCreation, IdentityUser>();
 			//sourceden destinationa ama update islemi yaptigimiz icin veriyi cekerken veriyi goruntulemek icin producttan ProductDtoForUpdateya veri maplememiz lazım yani reverse.
 		}
 	}

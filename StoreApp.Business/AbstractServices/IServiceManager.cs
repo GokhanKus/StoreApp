@@ -11,5 +11,6 @@ namespace StoreApp.Business.AbstractServices
 		IProductService ProductService { get; }
 		ICategoryService CategoryService { get; }
 		IOrderService OrderService { get; }
+		IAuthService AuthService{ get; }
 	}
 }

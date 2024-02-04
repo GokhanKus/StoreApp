@@ -66,7 +66,9 @@ namespace StoreApp.Business.ConcreteServices
 		public async Task UpdateUserAsync(UserDtoForUpdate userDto)
 		{
 			var source = await GetOneUserAsync(userDto.UserName);
-			var user = _mapper.Map<IdentityUser>(source);
+			var user = _mapper.Map(userDto, source);
+			//var user = _mapper.Map<IdentityUser>(source); guncellemeyle ilgili hata veriyordu veri aktarımını yapamıyorduk ustteki sekilde yazınca duzeldi
+
 			if (user != null)
 			{
 				var result = await _userManager.UpdateAsync(user);
@@ -80,5 +82,6 @@ namespace StoreApp.Business.ConcreteServices
 			}
 			throw new Exception("system has problem with user update");
 		}
+
 	}
 }

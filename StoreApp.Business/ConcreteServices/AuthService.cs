@@ -63,6 +63,22 @@ namespace StoreApp.Business.ConcreteServices
 			throw new Exception("An error occured.");
 		}
 
+		public async Task<IdentityResult> ResetPasswordAsync(ResetPasswordDto model)
+		{
+			var user = await GetOneUserAsync(model.UserName);
+			if (user is not null)
+			{
+				await _userManager.RemovePasswordAsync(user);
+				var result = await _userManager.AddPasswordAsync(user, model.Password);
+
+				if (!result.Succeeded)
+					throw new Exception("an error occured");
+
+				return result;
+			}
+			throw new Exception("user could not be found");
+		}
+
 		public async Task UpdateUserAsync(UserDtoForUpdate userDto)
 		{
 			var source = await GetOneUserAsync(userDto.UserName);

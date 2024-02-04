@@ -64,5 +64,29 @@ namespace StoreAppUI.Areas.Admin.Controllers
 			}
 			return View();
 		}
+		public async Task<IActionResult> ResetPassword(string username)
+		{
+			var model = new ResetPasswordDto { UserName = username };
+			return View(model);
+		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> ResetPassword([FromForm] ResetPasswordDto model)
+		{
+			if (ModelState.IsValid)
+			{
+				var user = await _manager.AuthService.ResetPasswordAsync(model);
+				if (!user.Succeeded)
+				{
+					foreach (IdentityError err in user.Errors)
+					{
+						ModelState.AddModelError("", "While processing reset the password, an error occured");
+					}
+					return View();
+				}
+				return RedirectToAction("Index", "User");
+			}
+			return View(model);
+		}
 	}
 }

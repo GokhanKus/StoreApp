@@ -17,6 +17,7 @@ namespace StoreApp.Business.AbstractServices
 		Task<UserDtoForUpdate> GetOneUserForUpdate(string userName);//UserDtoForUpdate bu sekilde tanimlamamizin sebebi bizim UserDtoForUpdate'deki UserRole'lere ihtiyac duymamiz
 		Task<IdentityResult> CreateUserAsync(UserDtoForCreation userDto);
 		Task UpdateUserAsync(UserDtoForUpdate userDto);
+		Task<IdentityResult> ResetPasswordAsync(ResetPasswordDto model);
 	}
 }
  

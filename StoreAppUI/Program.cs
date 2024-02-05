@@ -18,6 +18,7 @@ namespace StoreAppUI
 			builder.Services.ConfigureRepositoryInjections();			//ServiceExtension.cs'a tasindi
 			builder.Services.ConfigureServiceInjections();              //ServiceExtension.cs'a tasindi
 			builder.Services.ConfigureRouting();
+			builder.Services.ConfigureApplicationCookie();
 
 			//builder.Services.AddAutoMapper(typeof(Program));//automapper eklendi
 			builder.Services.AddAutoMapper(typeof(MappingProfile)); // MappingProfile'ý ekleyin

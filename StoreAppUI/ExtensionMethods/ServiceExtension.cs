@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StoreApp.Business.AbstractServices;
 using StoreApp.Business.ConcreteServices;
@@ -103,6 +104,16 @@ namespace StoreAppUI.ExtensionMethods
 			{
 				options.LowercaseUrls = true; //urldeki action, controller vs buyuk harfle basliyordu baslamasini istemiyoruz. orn: output localhost/product/get olacak
 				options.AppendTrailingSlash = false; //tue yapilirsa endpointin sonuna "/" koyar
+			});
+		}
+		public static void ConfigureApplicationCookie(this IServiceCollection services)
+		{
+			services.ConfigureApplicationCookie(options =>
+			{
+				options.LoginPath = new PathString("/Account/Login");
+				options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+				options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+				options.AccessDeniedPath = new PathString("/Account/AccessDenied");
 			});
 		}
 	}

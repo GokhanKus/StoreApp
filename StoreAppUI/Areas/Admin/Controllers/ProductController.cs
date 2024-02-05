@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using StoreApp.Business.AbstractServices;
 using StoreApp.DataAccess.Context;
@@ -7,6 +8,7 @@ using StoreApp.Model.Entities;
 
 namespace StoreAppUI.Areas.Admin.Controllers
 {
+	[Authorize(Roles = "Admin")]
 	[Area("Admin")]//bu attributeyi yazarak bu controllerin Areas/Admin icerisinde bulunması gerektigi anlamına gelir
 				   //Aynı controller isminden oldugu icin Area attribute'sini eklemek zorundayız.
 	public class ProductController : Controller

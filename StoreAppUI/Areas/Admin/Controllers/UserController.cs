@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StoreApp.Business.AbstractServices;
 using StoreApp.Model.DTOs;
@@ -6,6 +7,7 @@ using System.Net.WebSockets;
 
 namespace StoreAppUI.Areas.Admin.Controllers
 {
+	[Authorize(Roles = "Admin")]
 	[Area("Admin")]
 	public class UserController : Controller
 	{

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoreApp.Business.AbstractServices;
 using StoreApp.Model.Entities;
 
@@ -13,7 +14,7 @@ namespace StoreAppUI.Controllers
 			_manager = manager;
 			_cart = cart;
 		}
-
+		[Authorize]//user sepete urun ekledikten sonra islemin devami icin login olması gerekir
 		public ViewResult CheckOut()
 		{
 			return View(new Order());

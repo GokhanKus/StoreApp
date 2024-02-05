@@ -40,6 +40,12 @@ namespace StoreApp.Business.ConcreteServices
 			return result;
 		}
 
+		public async Task<IdentityResult> DeleteUserAsync(string userName)
+		{
+			var user = await GetOneUserAsync(userName);
+			return await _userManager.DeleteAsync(user);
+		}
+
 		public IEnumerable<IdentityUser> GetAllUsers()
 		{
 			return _userManager.Users.ToList();
@@ -47,36 +53,27 @@ namespace StoreApp.Business.ConcreteServices
 
 		public async Task<IdentityUser> GetOneUserAsync(string userName)
 		{
-			return await _userManager.FindByNameAsync(userName);
+			var user = await _userManager.FindByNameAsync(userName);
+			return user ?? throw new Exception("user could not be found");
 		}
 
-		public async Task<UserDtoForUpdate> GetOneUserForUpdate(string userName)
+		public async Task<UserDtoForUpdate> GetOneUserForUpdateAsync(string userName)
 		{
 			var user = await GetOneUserAsync(userName);
-			if (user != null)
-			{
-				var userDto = _mapper.Map<UserDtoForUpdate>(user); //UserDtoForUpdate'e userin, username, email, phonenumber gibi bilgilerini aldik.
-				userDto.Roles = new HashSet<string>(Roles.Select(r => r.Name).ToList()); //butun roller alindi 
-				userDto.UserRoles = new HashSet<string>(await _userManager.GetRolesAsync(user)); //userin rolleri alindi
-				return userDto;
-			}
-			throw new Exception("An error occured.");
+			var userDto = _mapper.Map<UserDtoForUpdate>(user); //UserDtoForUpdate'e userin, username, email, phonenumber gibi bilgilerini aldik.
+			userDto.Roles = new HashSet<string>(Roles.Select(r => r.Name).ToList()); //butun roller alindi 
+			userDto.UserRoles = new HashSet<string>(await _userManager.GetRolesAsync(user)); //userin rolleri alindi
+			return userDto;
 		}
 
 		public async Task<IdentityResult> ResetPasswordAsync(ResetPasswordDto model)
 		{
 			var user = await GetOneUserAsync(model.UserName);
-			if (user is not null)
-			{
-				await _userManager.RemovePasswordAsync(user);
-				var result = await _userManager.AddPasswordAsync(user, model.Password);
-
-				if (!result.Succeeded)
-					throw new Exception("an error occured");
-
-				return result;
-			}
-			throw new Exception("user could not be found");
+			await _userManager.RemovePasswordAsync(user);
+			var result = await _userManager.AddPasswordAsync(user, model.Password);
+			if (!result.Succeeded)
+				throw new Exception("an error occured");
+			return result;
 		}
 
 		public async Task UpdateUserAsync(UserDtoForUpdate userDto)
@@ -84,20 +81,14 @@ namespace StoreApp.Business.ConcreteServices
 			var source = await GetOneUserAsync(userDto.UserName);
 			var user = _mapper.Map(userDto, source);
 			//var user = _mapper.Map<IdentityUser>(source); guncellemeyle ilgili hata veriyordu veri aktarımını yapamıyorduk ustteki sekilde yazınca duzeldi
-
-			if (user != null)
+			var result = await _userManager.UpdateAsync(user);
+			if (userDto.Roles.Count > 0)
 			{
-				var result = await _userManager.UpdateAsync(user);
-				if (userDto.Roles.Count > 0)
-				{
-					var userRoles = await _userManager.GetRolesAsync(user);//updateden once userin ne kadar rolu varsa alalım
-					var r1 = await _userManager.RemoveFromRolesAsync(user, userRoles);//burada da o rollerin hepsini kaldiralim
-					var r2 = await _userManager.AddToRolesAsync(user, userDto.Roles); //rol tanimi, rol atamasi yapmadan mevcut rolleri kaldırıp oyle rol ekleme islemi yapiliyor
-				}
-				return;
+				var userRoles = await _userManager.GetRolesAsync(user);//updateden once userin ne kadar rolu varsa alalım
+				var r1 = await _userManager.RemoveFromRolesAsync(user, userRoles);//burada da o rollerin hepsini kaldiralim
+				var r2 = await _userManager.AddToRolesAsync(user, userDto.Roles); //rol tanimi, rol atamasi yapmadan mevcut rolleri kaldırıp oyle rol ekleme islemi yapiliyor
 			}
-			throw new Exception("system has problem with user update");
+			return;
 		}
-
 	}
 }

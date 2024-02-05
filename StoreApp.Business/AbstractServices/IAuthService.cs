@@ -14,10 +14,11 @@ namespace StoreApp.Business.AbstractServices
 		IEnumerable<IdentityRole> Roles { get; }
 		IEnumerable<IdentityUser> GetAllUsers();
 		Task<IdentityUser> GetOneUserAsync(string userName);//email ya da userName parametre olarak verilebilir
-		Task<UserDtoForUpdate> GetOneUserForUpdate(string userName);//UserDtoForUpdate bu sekilde tanimlamamizin sebebi bizim UserDtoForUpdate'deki UserRole'lere ihtiyac duymamiz
+		Task<UserDtoForUpdate> GetOneUserForUpdateAsync(string userName);//UserDtoForUpdate bu sekilde tanimlamamizin sebebi bizim UserDtoForUpdate'deki UserRole'lere ihtiyac duymamiz
 		Task<IdentityResult> CreateUserAsync(UserDtoForCreation userDto);
 		Task UpdateUserAsync(UserDtoForUpdate userDto);
 		Task<IdentityResult> ResetPasswordAsync(ResetPasswordDto model);
+		Task<IdentityResult> DeleteUserAsync(string userName);
 	}
 }
  

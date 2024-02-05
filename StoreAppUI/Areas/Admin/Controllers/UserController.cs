@@ -50,7 +50,7 @@ namespace StoreAppUI.Areas.Admin.Controllers
 
 		public async Task<IActionResult> Update(string username)//[FromRoute(Name = "username")] bunu yazınca hata veriyor ya da bunu yazarsak: [FromRoute(Name = "id")] string id seklinde yazmalıyız 
 		{
-			var user = await _manager.AuthService.GetOneUserForUpdate(username);
+			var user = await _manager.AuthService.GetOneUserForUpdateAsync(username);
 			return View(user);
 		}
 		[HttpPost]
@@ -87,6 +87,15 @@ namespace StoreAppUI.Areas.Admin.Controllers
 				return RedirectToAction("Index", "User");
 			}
 			return View(model);
+		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> DeleteUser([FromForm]string username)//[FromForm]
+		{
+			var result = await _manager.AuthService.DeleteUserAsync(username);
+			return result.Succeeded ?
+				RedirectToAction("Index")
+				: View();
 		}
 	}
 }

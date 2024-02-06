@@ -9,6 +9,8 @@ namespace StoreAppUI
 		{
 			var builder = WebApplication.CreateBuilder(args);
 			// Add services to the container.
+
+			builder.Services.AddControllers();
 			builder.Services.AddControllersWithViews();
 			builder.Services.AddRazorPages();							//artik controllerlar olmadan razor pageleri kullanabiliriz.
 
@@ -60,6 +62,7 @@ namespace StoreAppUI
 				);
 				endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 				endpoints.MapRazorPages(); //routing mekanizmasýnda bir problem yasamamamak icin ve endpointlerin uyusmasi icin bu satiri yazdýk.
+				endpoints.MapControllers(); //API icin yazildi?
 			});
 
 			app.ConfigureAndCheckMigration();

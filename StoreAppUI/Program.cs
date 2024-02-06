@@ -9,8 +9,10 @@ namespace StoreAppUI
 		{
 			var builder = WebApplication.CreateBuilder(args);
 			// Add services to the container.
+			//API controller ifadeleri icin presentation layerda mvc projemize ekler?
+			builder.Services.AddControllers()
+				.AddApplicationPart(typeof(StoreApp.Presentation.AssemblyReference).Assembly); 
 
-			builder.Services.AddControllers();
 			builder.Services.AddControllersWithViews();
 			builder.Services.AddRazorPages();							//artik controllerlar olmadan razor pageleri kullanabiliriz.
 

@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\StoreApp.Business\StoreApp.Business.csproj" />
     <ProjectReference Include="..\StoreApp.DataAccess\StoreApp.DataAccess.csproj" />
+    <ProjectReference Include="..\StoreApp.Presentation\StoreApp.Presentation.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StoreApp.Business.AbstractServices;
 
-namespace StoreAppUI.API
+namespace StoreApp.Presentation.Controllers
 {
-	[Route("api/products")]
+	[Route("api/products")] 
 	[ApiController]
 	public class ProductsController : ControllerBase
 	{

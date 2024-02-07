@@ -31,18 +31,21 @@
 					<td>@prd.Price.ToString("c")</td> @*para sembolu*@
 					<td>
 						<div class="btn-group gap-2">
-							<a class="btn btn-warning" asp-action="Update" asp-route-id="@prd.Id">
+							<a class="btn btn-warning"
+							data-toggle="tooltip"data-placement="top"title="Edit"
+							asp-action="Update"asp-route-id="@prd.Id">
 								<i class="fa fa-edit"></i>
-								Edit
 							</a>
-							<a class="btn btn-info" target="_blank" asp-area="" asp-controller="Product" asp-action="Get" asp-route-id="@prd.Id">
+							<a class="btn btn-info"
+							   data-toggle="tooltip" data-placement="top" title="Details" target="_blank" 
+							   asp-area="" asp-controller="Product" asp-action="Get" asp-route-id="@prd.Id">
 								@*mevcut areanın disina cikinca asp-area=""*@
 								<i class="fa fa-search"></i>
-								Details
 							</a>
-							<a class="btn btn-danger" asp-action="Delete" asp-route-id="@prd.Id">
+							<a class="btn btn-danger"
+							   data-toggle="tooltip" data-placement="top" title="Delete"
+							   asp-action="Delete" asp-route-id="@prd.Id">
 								<i class="fa fa-trash"></i>
-								Delete
 							</a>
 						</div>
 					</td>
@@ -52,3 +55,11 @@
 	</table>
 </div>
 
+@section Scripts 
+{	
+	<script type="text/javascript">
+		$(document).ready(() => {			//document, sayfasin kendisini ifade eder
+			$('[data-toggle="tooltip"]').tooltip()
+		});		
+	</script>
+}

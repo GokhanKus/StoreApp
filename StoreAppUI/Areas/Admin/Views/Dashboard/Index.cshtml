@@ -2,3 +2,4 @@
 	@await Html.PartialAsync("_Cards")
 	@* <partial name="_Cards" /> *@
 </div>
+@await Component.InvokeAsync("ShowCase",new {page = "list"})

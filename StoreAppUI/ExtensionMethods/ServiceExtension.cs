@@ -112,7 +112,7 @@ namespace StoreAppUI.ExtensionMethods
 			{
 				options.LoginPath = new PathString("/Account/Login");
 				options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
-				options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+				options.ExpireTimeSpan = TimeSpan.FromDays(10);//remember me ozelligi sadece 10 gunlugune aktif; default 14gundur yani oturum 10 gun sonra otomatik olarak sonlanacak
 				options.AccessDeniedPath = new PathString("/Account/AccessDenied");
 			});
 		}

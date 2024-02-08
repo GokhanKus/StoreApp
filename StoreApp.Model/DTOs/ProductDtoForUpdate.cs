@@ -8,6 +8,6 @@ namespace StoreApp.Model.DTOs
 {
 	public record ProductDtoForUpdate : ProductDto
 	{
-
-	}
+        public bool Showcase { get; set; }
+    }
 }

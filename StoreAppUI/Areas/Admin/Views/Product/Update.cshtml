@@ -33,6 +33,12 @@
         <input asp-for="Price" class="form-control" />
     </div>
 
+    <div class="form-check form-switch">
+        <input class="form-check-input" asp-for="Showcase" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <lable class="form-check-label" for="flexSwitchCheckDefault">Showcase</lable>
+    </div>
+    
+
     <div class="form-group my-3">
         <img class="rounded shadow" width="150" src="/img/@Model?.ImageUrl"/>
     </div>

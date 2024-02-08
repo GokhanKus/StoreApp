@@ -5,6 +5,8 @@ using StoreApp.Business.AbstractServices;
 using StoreApp.DataAccess.Context;
 using StoreApp.Model.DTOs;
 using StoreApp.Model.Entities;
+using StoreApp.Model.RequestParameters;
+using StoreAppUI.Models;
 
 namespace StoreAppUI.Areas.Admin.Controllers
 {
@@ -19,10 +21,26 @@ namespace StoreAppUI.Areas.Admin.Controllers
 			_manager = manager;
 		}
 
-		public IActionResult Index()
+		public IActionResult Index([FromQuery]ProductRequestParameters p)
 		{
-			var products = _manager.ProductService.GetAllProducts(false);
-			return View(products);
+			//var products = _manager.ProductService.GetAllProducts(false);
+			//bu metottaki kodları bir service tarafında yazsaydik, hem burada hem de user altindaki product index te aynisini yazmazdik (kod tekrari)
+			var products = _manager.ProductService.GetAllProductsWithDetails(p);
+			if (p.IsValidPrice == false)
+			{
+				ModelState.AddModelError("", "Min Price must be smaller than Max Price");
+			}
+			var pagination = new Pagination
+			{
+				ItemsPerPage = p.PageSize,
+				CurrentPage = p.PageNumber,
+				TotalItems = _manager.ProductService.GetAllProducts(false).Count()
+			};
+			return View(new ProductListViewModel
+			{
+				Pagination = pagination,
+				Products = products
+			});
 		}
 		public IActionResult Create()
 		{

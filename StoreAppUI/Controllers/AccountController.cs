@@ -36,10 +36,14 @@ namespace StoreAppUI.Controllers
 				if (user != null)
 				{
 					await _signInManager.SignOutAsync(); //oturum acmis user var ise once oturumdan cikis islemini gerceklestirmeliyiz?
-					var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false); //giris yapma islemi
-					if (result.Succeeded)
+					var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false); //giris yapma islemi
+					if (result.Succeeded && await _userManager.IsInRoleAsync(user, "Admin"))
 					{
-						return Redirect(model.ReturnUrl); //bizi "/"'ye yonlendirsin (homepage)
+						return RedirectToAction("Index", "Dashboard", new { area = "Admin" }); //bizi " / "'ye yonlendirsin (homepage)
+					}
+					else if (result.Succeeded)
+					{
+						return Redirect(model.ReturnUrl);
 					}
 				}
 				ModelState.AddModelError("Error", "Invalid Username or Password");

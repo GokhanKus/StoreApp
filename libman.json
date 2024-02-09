@@ -10,9 +10,9 @@
     //  "library": "jquery@3.6.0",
     //  "destination": "StoreAppUI/wwwroot/lib/jquery/" //libman.json kök dizinde oldugu icin hata verirse (path'i bulamazsa) destitanion basina StoreAppUI yazılabilir
     //},
-    {
-      "library": "font-awesome@6.5.1",
-      "destination": "StoreAppUI/wwwroot/lib/font-awesome"
-    }
+    //{
+    //  "library": "font-awesome@6.5.1",
+    //  "destination": "StoreAppUI/wwwroot/lib/font-awesome"
+    //}
   ]
 }

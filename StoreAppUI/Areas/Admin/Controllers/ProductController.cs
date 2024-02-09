@@ -75,6 +75,7 @@ namespace StoreAppUI.Areas.Admin.Controllers
 				else productDto.ImageUrl = "product.png"; //resim eklemek zorunlu olmasın ya da client sonradan ekleyebilsin ama eklemezse default olarak bir resim gelsin
 
 				_manager.ProductService.CreateProduct(productDto);
+				TempData["success"] = $"{productDto.ProductName} has been created.";
 				return RedirectToAction("Index");
 			}
 			return View();
@@ -82,7 +83,6 @@ namespace StoreAppUI.Areas.Admin.Controllers
 		public IActionResult Update(int id)
 		{
 			ViewBag.Categories = GetCategories();
-
 			var product = _manager.ProductService.GetOneProductForUpdate(id, false);
 			return View(product);
 		}
@@ -121,6 +121,7 @@ namespace StoreAppUI.Areas.Admin.Controllers
 		public IActionResult Delete([FromRoute(Name = "id")] int id)
 		{
 			_manager.ProductService.DeleteOneProduct(id);
+			TempData["danger"] = $"The product has been removed";
 			return RedirectToAction("Index");
 		}
 		private SelectList GetCategories()

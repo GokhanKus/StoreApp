@@ -363,5 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 StoreAppUI/wwwroot/lib/*
-StoreAppUI/wwwroot/lib/font-awesome/*
 

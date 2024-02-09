@@ -15,6 +15,7 @@ namespace StoreAppUI.Controllers
 
 		public IActionResult Index()
 		{
+			ViewData["title"] = "HomePage";
 			return View();
 		}
 

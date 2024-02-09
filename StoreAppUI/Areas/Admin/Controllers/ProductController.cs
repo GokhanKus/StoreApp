@@ -23,6 +23,7 @@ namespace StoreAppUI.Areas.Admin.Controllers
 
 		public IActionResult Index([FromQuery]ProductRequestParameters p)
 		{
+			ViewData["title"] = "Products";
 			//var products = _manager.ProductService.GetAllProducts(false);
 			//bu metottaki kodları bir service tarafında yazsaydik, hem burada hem de user altindaki product index te aynisini yazmazdik (kod tekrari)
 			var products = _manager.ProductService.GetAllProductsWithDetails(p);
@@ -84,6 +85,7 @@ namespace StoreAppUI.Areas.Admin.Controllers
 		{
 			ViewBag.Categories = GetCategories();
 			var product = _manager.ProductService.GetOneProductForUpdate(id, false);
+			ViewData["Title"] = $"{product?.ProductName}";
 			return View(product);
 		}
 

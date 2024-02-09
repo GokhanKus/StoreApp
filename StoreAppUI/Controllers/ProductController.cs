@@ -39,6 +39,7 @@ namespace StoreAppUI.Controllers
 		public IActionResult Get([FromRoute(Name = "id")] int id) //FromRoute gibi attributelar, HTTP isteklerinden gelen verilerin doğru parametrelere bağlanmasını sağlamak için kullanılır.
 		{
 			var model = _manager.ProductService.GetOneProduct(id, false);
+			ViewData["title"] = $"{model?.ProductName}";
 			return View(model);
 		}
 	}

@@ -363,4 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 StoreAppUI/wwwroot/lib/*
-/StoreAppUI/Migrations/20240117172147_InitialCreate.cs
+StoreAppUI/wwwroot/lib/font-awesome/*
+

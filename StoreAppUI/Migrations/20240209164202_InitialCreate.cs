@@ -17,10 +17,10 @@ namespace StoreAppUI.Migrations
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -31,21 +31,21 @@ namespace StoreAppUI.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,10 +56,10 @@ namespace StoreAppUI.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    CategoryName = table.Column<string>(type: "TEXT", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -70,16 +70,16 @@ namespace StoreAppUI.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Line1 = table.Column<string>(type: "TEXT", nullable: false),
-                    Line2 = table.Column<string>(type: "TEXT", nullable: true),
-                    Line3 = table.Column<string>(type: "TEXT", nullable: true),
-                    City = table.Column<string>(type: "TEXT", nullable: true),
-                    GiftWrap = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Shipped = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Line1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Line2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Line3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GiftWrap = table.Column<bool>(type: "bit", nullable: false),
+                    Shipped = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,11 +90,11 @@ namespace StoreAppUI.Migrations
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    RoleId = table.Column<string>(type: "TEXT", nullable: false),
-                    ClaimType = table.Column<string>(type: "TEXT", nullable: true),
-                    ClaimValue = table.Column<string>(type: "TEXT", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -111,11 +111,11 @@ namespace StoreAppUI.Migrations
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    ClaimType = table.Column<string>(type: "TEXT", nullable: true),
-                    ClaimValue = table.Column<string>(type: "TEXT", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -132,10 +132,10 @@ namespace StoreAppUI.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "TEXT", nullable: false),
-                    ProviderKey = table.Column<string>(type: "TEXT", nullable: false),
-                    ProviderDisplayName = table.Column<string>(type: "TEXT", nullable: true),
-                    UserId = table.Column<string>(type: "TEXT", nullable: false)
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -152,8 +152,8 @@ namespace StoreAppUI.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    RoleId = table.Column<string>(type: "TEXT", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -176,10 +176,10 @@ namespace StoreAppUI.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    LoginProvider = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Value = table.Column<string>(type: "TEXT", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -196,15 +196,15 @@ namespace StoreAppUI.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ProductName = table.Column<string>(type: "TEXT", nullable: false),
-                    Price = table.Column<decimal>(type: "TEXT", nullable: false),
-                    Summary = table.Column<string>(type: "TEXT", nullable: true),
-                    ImageUrl = table.Column<string>(type: "TEXT", nullable: true),
-                    CategoryId = table.Column<int>(type: "INTEGER", nullable: true),
-                    ShowCase = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Summary = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: true),
+                    ShowCase = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -220,11 +220,11 @@ namespace StoreAppUI.Migrations
                 name: "CartLine",
                 columns: table => new
                 {
-                    CartLineId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ProductId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
-                    OrderId = table.Column<int>(type: "INTEGER", nullable: true)
+                    CartLineId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -243,12 +243,22 @@ namespace StoreAppUI.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "785861de-6048-4b2c-a397-d482d49486ab", null, "Editor", "EDITOR" },
+                    { "8c68cebd-6931-450c-b320-d78c2c1e9cf9", null, "Admin", "ADMIN" },
+                    { "a135fb82-9c9a-4ffe-86c1-f82ddf2ab645", null, "User", "USER" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CategoryName", "CreatedTime" },
                 values: new object[,]
                 {
-                    { 1, "Book", new DateTime(2024, 1, 31, 19, 41, 34, 325, DateTimeKind.Local).AddTicks(8803) },
-                    { 2, "Electronic", new DateTime(2024, 1, 31, 19, 41, 34, 325, DateTimeKind.Local).AddTicks(8806) }
+                    { 1, "Book", new DateTime(2024, 2, 9, 19, 42, 1, 820, DateTimeKind.Local).AddTicks(4622) },
+                    { 2, "Electronic", new DateTime(2024, 2, 9, 19, 42, 1, 820, DateTimeKind.Local).AddTicks(4628) }
                 });
 
             migrationBuilder.InsertData(
@@ -256,16 +266,16 @@ namespace StoreAppUI.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedTime", "ImageUrl", "Price", "ProductName", "ShowCase", "Summary" },
                 values: new object[,]
                 {
-                    { 1, 2, new DateTime(2024, 1, 31, 19, 41, 34, 326, DateTimeKind.Local).AddTicks(500), "1.jpg", 30000m, "Laptop", false, "" },
-                    { 2, 2, new DateTime(2024, 1, 31, 19, 41, 34, 326, DateTimeKind.Local).AddTicks(503), "2.jpg", 1000m, "Keyboard", false, "" },
-                    { 3, 2, new DateTime(2024, 1, 31, 19, 41, 34, 326, DateTimeKind.Local).AddTicks(506), "3.jpg", 500m, "Mouse", false, "" },
-                    { 4, 2, new DateTime(2024, 1, 31, 19, 41, 34, 326, DateTimeKind.Local).AddTicks(509), "4.jpg", 5000m, "Monitor", false, "" },
-                    { 5, 2, new DateTime(2024, 1, 31, 19, 41, 34, 326, DateTimeKind.Local).AddTicks(511), "5.jpg", 1500m, "Deck", false, "" },
-                    { 6, 1, new DateTime(2024, 1, 31, 19, 41, 34, 326, DateTimeKind.Local).AddTicks(513), "6.jpg", 165m, "Guns, Germs and Steel", false, "" },
-                    { 7, 1, new DateTime(2024, 1, 31, 19, 41, 34, 326, DateTimeKind.Local).AddTicks(515), "7.jpg", 45m, "1984", false, "" },
-                    { 8, 2, new DateTime(2024, 1, 31, 19, 41, 34, 326, DateTimeKind.Local).AddTicks(517), "8.jpg", 450m, "Xp-Pen", true, "" },
-                    { 9, 2, new DateTime(2024, 1, 31, 19, 41, 34, 326, DateTimeKind.Local).AddTicks(519), "9.jpg", 15000m, "Galaxy FE", true, "" },
-                    { 10, 2, new DateTime(2024, 1, 31, 19, 41, 34, 326, DateTimeKind.Local).AddTicks(521), "10.jpg", 400m, "Hp Mouse", true, "" }
+                    { 1, 2, new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(480), "1.jpg", 30000m, "Laptop", false, "" },
+                    { 2, 2, new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(484), "2.jpg", 1000m, "Keyboard", false, "" },
+                    { 3, 2, new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(487), "3.jpg", 500m, "Mouse", false, "" },
+                    { 4, 2, new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(490), "4.jpg", 5000m, "Monitor", false, "" },
+                    { 5, 2, new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(495), "5.jpg", 1500m, "Deck", false, "" },
+                    { 6, 1, new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(498), "6.jpg", 165m, "Guns, Germs and Steel", false, "" },
+                    { 7, 1, new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(501), "7.jpg", 45m, "1984", false, "" },
+                    { 8, 2, new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(601), "8.jpg", 450m, "Xp-Pen", true, "" },
+                    { 9, 2, new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(604), "9.jpg", 15000m, "Galaxy FE", true, "" },
+                    { 10, 2, new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(607), "10.jpg", 400m, "Hp Mouse", true, "" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -277,7 +287,8 @@ namespace StoreAppUI.Migrations
                 name: "RoleNameIndex",
                 table: "AspNetRoles",
                 column: "NormalizedName",
-                unique: true);
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",
@@ -303,7 +314,8 @@ namespace StoreAppUI.Migrations
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
-                unique: true);
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CartLine_OrderId",

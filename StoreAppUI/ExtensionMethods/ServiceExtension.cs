@@ -15,12 +15,22 @@ namespace StoreAppUI.ExtensionMethods
 	public static class ServiceExtension
 	{
 		//artik bu configurationu program.cs'te yazmamiza gerek kalmadi
-		public static void ConfigureDbContext(this IServiceCollection services, IConfiguration configuration)
+		public static void ConfigureSqLite(this IServiceCollection services, IConfiguration configuration)
 		{
 			var connectionString = configuration.GetConnectionString("sqLiteConnection");
 			services.AddDbContext<StoreContext>(options =>
 			{
 				options.UseSqlite(connectionString, b => b.MigrationsAssembly("StoreAppUI"));
+				options.EnableSensitiveDataLogging(true);
+				//app gelistirme asamasinda username password gibi hassas bilgileri loglara yansitmaya ihtiyac duyabiliriz. simdilik true yapalim
+			});
+		}
+		public static void ConfigureSqlServer(this IServiceCollection services, IConfiguration configuration)
+		{
+			var connectionString = configuration.GetConnectionString("sqlServerConnection");
+			services.AddDbContext<StoreContext>(options =>
+			{
+				options.UseSqlServer(connectionString, b => b.MigrationsAssembly("StoreAppUI"));
 				options.EnableSensitiveDataLogging(true);
 				//app gelistirme asamasinda username password gibi hassas bilgileri loglara yansitmaya ihtiyac duyabiliriz. simdilik true yapalim
 			});

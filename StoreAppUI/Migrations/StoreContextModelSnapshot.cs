@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StoreApp.DataAccess.Context;
 
@@ -15,49 +16,54 @@ namespace StoreAppUI.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasDatabaseName("RoleNameIndex");
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = "598f8dae-3c68-4973-a5ee-91759242e7fa",
+                            Id = "a135fb82-9c9a-4ffe-86c1-f82ddf2ab645",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "621536a4-0c74-48b7-8307-a2d3ef5904d4",
+                            Id = "785861de-6048-4b2c-a397-d482d49486ab",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "190be217-7fd6-4a85-8214-2af8d5fa9438",
+                            Id = "8c68cebd-6931-450c-b320-d78c2c1e9cf9",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -67,17 +73,19 @@ namespace StoreAppUI.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -89,54 +97,54 @@ namespace StoreAppUI.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
@@ -145,7 +153,8 @@ namespace StoreAppUI.Migrations
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasDatabaseName("UserNameIndex");
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -154,17 +163,19 @@ namespace StoreAppUI.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -176,17 +187,17 @@ namespace StoreAppUI.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -198,10 +209,10 @@ namespace StoreAppUI.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -213,16 +224,16 @@ namespace StoreAppUI.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
@@ -233,16 +244,18 @@ namespace StoreAppUI.Migrations
                 {
                     b.Property<int>("CartLineId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartLineId"));
 
                     b.Property<int?>("OrderId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("ProductId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("Quantity")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.HasKey("CartLineId");
 
@@ -257,14 +270,16 @@ namespace StoreAppUI.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -275,13 +290,13 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 1,
                             CategoryName = "Book",
-                            CreatedTime = new DateTime(2024, 2, 1, 12, 7, 59, 436, DateTimeKind.Local).AddTicks(9619)
+                            CreatedTime = new DateTime(2024, 2, 9, 19, 42, 1, 820, DateTimeKind.Local).AddTicks(4622)
                         },
                         new
                         {
                             Id = 2,
                             CategoryName = "Electronic",
-                            CreatedTime = new DateTime(2024, 2, 1, 12, 7, 59, 436, DateTimeKind.Local).AddTicks(9625)
+                            CreatedTime = new DateTime(2024, 2, 9, 19, 42, 1, 820, DateTimeKind.Local).AddTicks(4628)
                         });
                 });
 
@@ -289,33 +304,35 @@ namespace StoreAppUI.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("City")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("GiftWrap")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Line1")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Line2")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Line3")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Shipped")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -326,29 +343,31 @@ namespace StoreAppUI.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CategoryId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("ShowCase")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Summary")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -361,7 +380,7 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 1,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 2, 1, 12, 7, 59, 437, DateTimeKind.Local).AddTicks(2286),
+                            CreatedTime = new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(480),
                             ImageUrl = "1.jpg",
                             Price = 30000m,
                             ProductName = "Laptop",
@@ -372,7 +391,7 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 2,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 2, 1, 12, 7, 59, 437, DateTimeKind.Local).AddTicks(2289),
+                            CreatedTime = new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(484),
                             ImageUrl = "2.jpg",
                             Price = 1000m,
                             ProductName = "Keyboard",
@@ -383,7 +402,7 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 3,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 2, 1, 12, 7, 59, 437, DateTimeKind.Local).AddTicks(2291),
+                            CreatedTime = new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(487),
                             ImageUrl = "3.jpg",
                             Price = 500m,
                             ProductName = "Mouse",
@@ -394,7 +413,7 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 4,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 2, 1, 12, 7, 59, 437, DateTimeKind.Local).AddTicks(2293),
+                            CreatedTime = new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(490),
                             ImageUrl = "4.jpg",
                             Price = 5000m,
                             ProductName = "Monitor",
@@ -405,7 +424,7 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 5,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 2, 1, 12, 7, 59, 437, DateTimeKind.Local).AddTicks(2295),
+                            CreatedTime = new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(495),
                             ImageUrl = "5.jpg",
                             Price = 1500m,
                             ProductName = "Deck",
@@ -416,7 +435,7 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 6,
                             CategoryId = 1,
-                            CreatedTime = new DateTime(2024, 2, 1, 12, 7, 59, 437, DateTimeKind.Local).AddTicks(2297),
+                            CreatedTime = new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(498),
                             ImageUrl = "6.jpg",
                             Price = 165m,
                             ProductName = "Guns, Germs and Steel",
@@ -427,7 +446,7 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 7,
                             CategoryId = 1,
-                            CreatedTime = new DateTime(2024, 2, 1, 12, 7, 59, 437, DateTimeKind.Local).AddTicks(2298),
+                            CreatedTime = new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(501),
                             ImageUrl = "7.jpg",
                             Price = 45m,
                             ProductName = "1984",
@@ -438,7 +457,7 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 8,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 2, 1, 12, 7, 59, 437, DateTimeKind.Local).AddTicks(2300),
+                            CreatedTime = new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(601),
                             ImageUrl = "8.jpg",
                             Price = 450m,
                             ProductName = "Xp-Pen",
@@ -449,7 +468,7 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 9,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 2, 1, 12, 7, 59, 437, DateTimeKind.Local).AddTicks(2302),
+                            CreatedTime = new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(604),
                             ImageUrl = "9.jpg",
                             Price = 15000m,
                             ProductName = "Galaxy FE",
@@ -460,7 +479,7 @@ namespace StoreAppUI.Migrations
                         {
                             Id = 10,
                             CategoryId = 2,
-                            CreatedTime = new DateTime(2024, 2, 1, 12, 7, 59, 437, DateTimeKind.Local).AddTicks(2305),
+                            CreatedTime = new DateTime(2024, 2, 9, 19, 42, 1, 821, DateTimeKind.Local).AddTicks(607),
                             ImageUrl = "10.jpg",
                             Price = 400m,
                             ProductName = "Hp Mouse",

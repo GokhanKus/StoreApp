@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="StoreApp.Business.ConcreteServices.AuthService">
+    <Position X="7.75" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAgAAAAAAAAAAABAAAgAgABABAAAAAAABUAAAA=</HashCode>
+      <FileName>ConcreteServices\AuthService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="StoreApp.Business.ConcreteServices.CategoryService">
+    <Position X="3.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConcreteServices\CategoryService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="StoreApp.Business.ConcreteServices.OrderService">
+    <Position X="5.5" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAACAAAAAIAAAAAAQAAAAAAAAAAAAAAIAAACAA=</HashCode>
+      <FileName>ConcreteServices\OrderService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="StoreApp.Business.ConcreteServices.ProductService">
+    <Position X="0.75" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAEAAAABAAAAAMABBAQAAAAAAAAAQAAAgAAAAAAg=</HashCode>
+      <FileName>ConcreteServices\ProductService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="StoreApp.Business.ConcreteServices.ServiceManager">
+    <Position X="10.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAQAAAAAAAQAAgCAAAAAACACAAAAAAEAA=</HashCode>
+      <FileName>ConcreteServices\ServiceManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="StoreApp.Business.AbstractServices.IAuthService">
+    <Position X="7.75" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAgABABAAAAAAABUAAAA=</HashCode>
+      <FileName>AbstractServices\IAuthService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="StoreApp.Business.AbstractServices.ICategoryService">
+    <Position X="3.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AbstractServices\ICategoryService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="StoreApp.Business.AbstractServices.IOrderService">
+    <Position X="5.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAACAAAAAIAAAAAAAAAAAAAAAAAAAAAIAAACAA=</HashCode>
+      <FileName>AbstractServices\IOrderService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="StoreApp.Business.AbstractServices.IProductService">
+    <Position X="0.75" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAEAAAABAAAAAMABAAAAAAAAAAAAQAAAgAAAAAAg=</HashCode>
+      <FileName>AbstractServices\IProductService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="StoreApp.Business.AbstractServices.IServiceManager">
+    <Position X="10.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAACAAAAAACAAAAAAAAEAA=</HashCode>
+      <FileName>AbstractServices\IServiceManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

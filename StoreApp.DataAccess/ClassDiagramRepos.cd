@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="StoreApp.DataAccess.ConcreteRepos.CategoryRepository">
+    <Position X="5.5" Y="8.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConcreteRepos\CategoryRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="StoreApp.DataAccess.ConcreteRepos.RepositoryBase&lt;TEntity&gt;">
+    <Position X="3.25" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAFAAAAAAQBAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConcreteRepos\RepositoryBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="StoreApp.DataAccess.ConcreteRepos.OrderRepository">
+    <Position X="8" Y="8.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAACAAAAAIAAAAAAAAAAAAAAAAAAAAAIAAACAA=</HashCode>
+      <FileName>ConcreteRepos\OrderRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="StoreApp.DataAccess.ConcreteRepos.RepositoryManager">
+    <Position X="10.5" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAECAIAAIAAABAAAAAAAAAAAAAAAAAACAAAAABAACAA=</HashCode>
+      <FileName>ConcreteRepos\RepositoryManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="StoreApp.DataAccess.ConcreteRepos.ProductRepository">
+    <Position X="0.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAABAAAAAMAAAAAAAAAAAAAAQAAAgAEAAAAA=</HashCode>
+      <FileName>ConcreteRepos\ProductRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="StoreApp.DataAccess.AbstractRepos.ICategoryRepository" Collapsed="true">
+    <Position X="5.5" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AbstractRepos\ICategoryRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="StoreApp.DataAccess.AbstractRepos.IOrderRepository">
+    <Position X="8" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAACAAAAAIAAAAAAAAAAAAAAAAAAAAAIAAACAA=</HashCode>
+      <FileName>AbstractRepos\IOrderRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="StoreApp.DataAccess.AbstractRepos.IProductRepository">
+    <Position X="0.5" Y="4.5" Width="2.25" />
+    <InheritanceLine Type="StoreApp.DataAccess.AbstractRepos.IRepositoryBase&lt;TEntity&gt;" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="4" Y="3.873" />
+        <Point X="4" Y="4.248" />
+        <Point X="1.625" Y="4.248" />
+        <Point X="1.625" Y="4.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAABAAAAAMAAAAAAAAAAAAAAQAAAgAEAAAAA=</HashCode>
+      <FileName>AbstractRepos\IProductRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="StoreApp.DataAccess.AbstractRepos.IRepositoryBase&lt;TEntity&gt;">
+    <Position X="3" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAEAAAAAAQBAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>AbstractRepos\IRepositoryBase.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="StoreApp.DataAccess.AbstractRepos.IRepositoryManager">
+    <Position X="10.5" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAECAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>AbstractRepos\IRepositoryManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
